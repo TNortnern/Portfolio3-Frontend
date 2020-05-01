@@ -16,6 +16,7 @@
             color="white"
             outlined
             x-large
+            to="#about"
           >
             <span class="headline text-capitalize">Portfolio</span>
             <v-icon
@@ -34,6 +35,8 @@
             color="white"
             outlined
             x-large
+            href="//link.com"
+            target="__blank"
           >
             <span class="headline text-capitalize">Resume</span>
             <v-icon
