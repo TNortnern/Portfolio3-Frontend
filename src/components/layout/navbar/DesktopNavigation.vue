@@ -11,7 +11,7 @@
         <p>test</p>
       </v-col>
       <v-col :cols="cols">
-        <p>test</p>
+        <p>tests</p>
       </v-col>
     </v-row>
   </div>
