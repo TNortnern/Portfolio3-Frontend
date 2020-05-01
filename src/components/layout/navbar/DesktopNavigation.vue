@@ -3,22 +3,21 @@
     class="desktop-navigation"
     :style="`background-color: ${$store.state.constants.colors.darkerBlue};`"
   >
-    <v-container>
-      <v-row
-        justify="center"
-        class="desktop-navigation__links"
+    <v-app-bar
+      dark
+      :color="$store.state.constants.colors.darkerBlue"
+      class="d-flex justify-center"
+    >
+      <router-link
+        v-for="item in $store.state.navItems"
+        :key="item.name"
+        class="desktop-navigation__link ml-3"
+        active-class="desktop-navigation__link--active"
+        :to="item.to"
       >
-        <v-col :cols="cols">
-          <p>test</p>
-        </v-col>
-        <v-col :cols="cols">
-          <p>test</p>
-        </v-col>
-        <v-col :cols="cols">
-          <p>tests</p>
-        </v-col>
-      </v-row>
-    </v-container>
+        {{item.name}}
+      </router-link>
+    </v-app-bar>
   </div>
 </template>
 
@@ -26,7 +25,7 @@
 export default {
   data () {
     return {
-      cols: 1
+      cols: 2
     }
   }
 }
@@ -34,19 +33,29 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/styles";
-p {
-  color: white;
-  font-size: 30px;
-}
 .desktop-navigation__links {
-  padding: 10px 0;
   color: white;
-  font-size: 40px;
 }
 .desktop-navigation {
-    width: 100%;
+  width: 100%;
   @include mobile() {
     display: none;
   }
+}
+.desktop-navigation__link {
+  font-size: 24px;
+  text-transform: uppercase;
+  color: white;
+  text-decoration: none;
+  transition: ease 0.28s;
+  padding: 2px 20px;
+  &:hover {
+    background-color: white;
+    color: $aqua;
+  }
+}
+.desktop-navigation__link--active {
+  background-color: white;
+  color: $aqua;
 }
 </style>
