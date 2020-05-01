@@ -65,7 +65,7 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/styles";
 .mobile-nav {
-//   display: none;
+  display: none;
 }
 @include mobile() {
   .mobile-nav {
