@@ -1,0 +1,20 @@
+$aqua: #59c5c2;
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+html, body, #app {
+    font-family: 'Roboto', sans-serif !important;
+}
+.aqua--text {
+  color: $aqua;
+}
+.position--absolute {
+  position: absolute;
+}
+.position--relative {
+  position: relative;
+}
+
+@mixin mobile() {
+    @media only screen and (max-width: 600px) {
+        @content;
+    }
+}
