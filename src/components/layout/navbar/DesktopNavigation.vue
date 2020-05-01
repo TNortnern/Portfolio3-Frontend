@@ -1,9 +1,12 @@
 <template>
-  <div :style="`width: 100%;background-color: ${$store.state.constants.colors.darkerBlue};`">
+  <div
+    class="desktop-navigation"
+    :style="`background-color: ${$store.state.constants.colors.darkerBlue};`"
+  >
     <v-container>
       <v-row
         justify="center"
-        class="desktop-navigation"
+        class="desktop-navigation__links"
       >
         <v-col :cols="cols">
           <p>test</p>
@@ -35,10 +38,13 @@ p {
   color: white;
   font-size: 30px;
 }
-.desktop-navigation {
+.desktop-navigation__links {
   padding: 10px 0;
   color: white;
   font-size: 40px;
+}
+.desktop-navigation {
+    width: 100%;
   @include mobile() {
     display: none;
   }
