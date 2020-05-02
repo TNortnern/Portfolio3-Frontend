@@ -1,0 +1,53 @@
+<template>
+  <v-col class="about__item">
+    <div class="about__item__icon ml-12">
+      <i :class="`${icon} d-flex justify-center align-center`"></i>
+    </div>
+    <h2 :class="titleClasses">{{ title }}</h2>
+    <slot />
+  </v-col>
+</template>
+
+<script>
+export default {
+  props: {
+    title: {
+      type: String,
+      default: ''
+    },
+    icon: {
+      type: String,
+      default: ''
+    },
+    titleClasses: {
+      type: String,
+      default: ''
+    }
+  }
+}
+</script>
+
+<style  lang="scss" scoped>
+@import "@/assets/styles";
+
+.about__item {
+  i {
+    font-size: 35px;
+    border-radius: 50%;
+    background-color: $blackish;
+    width: 94px;
+    height: 94px;
+    color: white;
+  }
+
+  p {
+    font-size: 20px;
+  }
+}
+ul,
+li {
+  padding: 0 !important;
+  margin: 0;
+  list-style: none;
+}
+</style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="hero">
+  <div class="hero position--relative">
     <HeroContent />
     <vue-particles
       color="#46a29f"
@@ -39,8 +39,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/styles';
 .hero {
-  background-color: #0b0c10;
+  background-color: $blackish;
   height: 100vh;
   width: 100%;
 }
