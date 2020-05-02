@@ -1,6 +1,6 @@
 <template>
-  <v-col class="about__item">
-    <div class="about__item__icon ml-12">
+  <v-col class="about__item d-flex flex-column align-center" cols="12" sm="4">
+    <div class="about__item__icon ml-md-12">
       <i :class="`${icon} d-flex justify-center align-center`"></i>
     </div>
     <h2 :class="titleClasses">{{ title }}</h2>
@@ -31,6 +31,7 @@ export default {
 @import "@/assets/styles";
 
 .about__item {
+
   i {
     font-size: 35px;
     border-radius: 50%;
@@ -49,5 +50,6 @@ li {
   padding: 0 !important;
   margin: 0;
   list-style: none;
+  margin: 4px 0;
 }
 </style>
