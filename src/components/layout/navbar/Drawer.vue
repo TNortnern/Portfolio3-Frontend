@@ -3,18 +3,19 @@
     v-model="drawerOpen"
     app
     temporary
+    dark
   >
-    <!-- <v-list-item>
+    <v-list-item>
       <v-list-item-avatar>
-        <v-img src="https://randomuser.me/api/portraits/men/78.jpg"></v-img>
+        <v-img src="https://i.imgur.com/Sgx3zY5.png"></v-img>
       </v-list-item-avatar>
 
       <v-list-item-content>
-        <v-list-item-title>John Leider</v-list-item-title>
+        <v-list-item-title>Navigation</v-list-item-title>
       </v-list-item-content>
     </v-list-item>
 
-    <v-divider></v-divider> -->
+    <v-divider></v-divider>
 
     <v-list dense>
       <v-list-item
@@ -22,6 +23,7 @@
         :key="item.name"
         link
         :to="item.to"
+        v-scroll-to="item.to"
       >
         <v-list-item-icon>
           <v-icon>{{ item.icon }}</v-icon>

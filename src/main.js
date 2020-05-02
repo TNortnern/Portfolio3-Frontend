@@ -5,7 +5,9 @@ import store from './store'
 import './registerServiceWorker'
 import vuetify from './plugins/vuetify';
 import VueParticles from "vue-particles";
+import VueScrollTo from 'vue-scrollto'
 Vue.use(VueParticles);
+Vue.use(VueScrollTo);
 
 Vue.config.productionTip = false
 

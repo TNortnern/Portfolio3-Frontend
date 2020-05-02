@@ -17,6 +17,8 @@
             outlined
             x-large
             to="#about"
+            v-scroll-to="'#about'"
+            active-class="no-active-class"
           >
             <span class="headline text-capitalize">Portfolio</span>
             <v-icon
