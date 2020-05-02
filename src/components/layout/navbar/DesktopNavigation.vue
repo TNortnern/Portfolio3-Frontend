@@ -3,21 +3,28 @@
     class="desktop-navigation"
     :style="`background-color: ${$store.state.constants.colors.darkerBlue};`"
   >
-    <v-app-bar
-      dark
-      :color="$store.state.constants.colors.darkerBlue"
-      class="d-flex justify-center"
+    <scrollactive
+      active-class="desktop-navigation__link--active"
+      :offset="120"
+      :duration="800"
+      bezier-easing-value=".5,0,.35,1"
     >
-      <router-link
-        v-for="item in $store.state.navItems"
-        :key="item.name"
-        class="desktop-navigation__link ml-3"
-        active-class="desktop-navigation__link--active"
-        :to="item.to"
+      <v-app-bar
+        dark
+        :color="$store.state.constants.colors.darkerBlue"
+        class="d-flex justify-center"
       >
-        {{item.name}}
-      </router-link>
-    </v-app-bar>
+        <a
+          v-for="item in $store.state.navItems"
+          :key="item.name"
+          class="desktop-navigation__link ml-3 scrollactive-item"
+          active-class="desktop-navigation__link--active"
+          :href="item.to"
+        >
+          {{item.name}}
+        </a>
+      </v-app-bar>
+    </scrollactive>
   </div>
 </template>
 
@@ -54,7 +61,8 @@ export default {
     color: $aqua;
   }
 }
-.desktop-navigation__link--active {
+.desktop-navigation__link--active,
+.is-active {
   background-color: white;
   color: $aqua;
 }

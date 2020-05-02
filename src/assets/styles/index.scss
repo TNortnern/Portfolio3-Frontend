@@ -1,9 +1,12 @@
 $aqua: #59c5c2;
 $darkerBlue: #202833;
 $blackish: #0b0c10;
-@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
-html, body, #app {
-    font-family: 'Roboto', sans-serif !important;
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+html,
+body,
+#app {
+font-family: 'Raleway', sans-serif !important;
 }
 .aqua--text {
   color: $aqua;
@@ -14,9 +17,13 @@ html, body, #app {
 .position--relative {
   position: relative;
 }
+.title-underline {
+  height: 4px;
+  margin: 0px 0 75px 0;
+}
 
 @mixin mobile() {
-    @media only screen and (max-width: 600px) {
-        @content;
-    }
+  @media only screen and (max-width: 600px) {
+    @content;
+  }
 }
