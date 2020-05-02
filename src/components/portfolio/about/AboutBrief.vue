@@ -1,6 +1,6 @@
 <template>
   <v-col class="about__item d-flex flex-column align-center" cols="12" sm="4">
-    <div class="about__item__icon ml-md-12">
+    <div class="about__item__icon">
       <i :class="`${icon} d-flex justify-center align-center`"></i>
     </div>
     <h2 :class="titleClasses">{{ title }}</h2>
@@ -36,8 +36,8 @@ export default {
     font-size: 35px;
     border-radius: 50%;
     background-color: $blackish;
-    width: 94px;
-    height: 94px;
+    width: 82px;
+    height: 82px;
     color: white;
   }
 
