@@ -5,6 +5,11 @@
     xl="3"
     sm="6"
   >
+    <ProjectModal
+      :modalOpen="modalOpen"
+      :toggleModal="toggleModal"
+      :project="project"
+    />
     <v-card class="position--relative">
       <v-img
         :src="images[0]"
@@ -21,7 +26,12 @@
             {{ tech }} <template v-if="i !== technologies.length-1">/</template>
           </b>
           <div class="text-center mt-8">
-            <v-btn class="project__button" outlined x-large>
+            <v-btn
+              @click="modalOpen = !modalOpen"
+              class="project__button"
+              outlined
+              x-large
+            >
               View Project
             </v-btn>
           </div>
@@ -33,7 +43,11 @@
 </template>
 
 <script>
+import ProjectModal from './ProjectModal'
 export default {
+  components: {
+    ProjectModal
+  },
   props: {
     name: {
       type: String,
@@ -58,6 +72,21 @@ export default {
     links: {
       type: Object,
       default: () => { }
+    },
+    project: {
+      type: Object,
+      default: () => {  }
+    }
+  },
+  data () {
+    return {
+      modalOpen: false
+    }
+  },
+  methods: {
+    toggleModal (val) {
+      if (val || val === false) this.modalOpen = val
+      else this.modal = !this.modal
     }
   }
 }
@@ -91,7 +120,7 @@ export default {
 }
 .project__button {
   border: 3px solid $aqua !important;
-  transition: .34s ease;
+  transition: 0.34s ease;
   &:hover {
     background-color: $aqua;
     border: none;

@@ -31,6 +31,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/styles';
 span {
   opacity: 0;
   transition: .26s ease;
@@ -41,6 +42,9 @@ img {
   max-height: 56px;
   display: inline-flex;
   align-content: center;
+  @include mobile () {
+    max-height: 80px;
+  }
 }
 .about__language {
   &:hover {

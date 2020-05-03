@@ -15,6 +15,7 @@
         :description="project.description"
         :project-type="project.type"
         :links="project.links"
+        :project="project"
       />
     </transition-group>
   </v-container>
