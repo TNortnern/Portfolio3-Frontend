@@ -8,8 +8,12 @@
 
 export default {
   name: 'App',
-  mounted () {
-    
-  }
 };
 </script>
+<style lang="scss">
+@import '@/assets/styles';
+body {
+  font-family: 'Raleway', sans-serif !important;
+
+}
+</style>

@@ -7,9 +7,11 @@ import vuetify from "./plugins/vuetify";
 import VueParticles from "vue-particles";
 import VueScrollTo from "vue-scrollto";
 import VueScrollactive from "vue-scrollactive";
+import Underline from '@/components/portfolio/misc/Underline'
 Vue.use(VueParticles);
 Vue.use(VueScrollTo);
 Vue.use(VueScrollactive);
+Vue.component('Underline', Underline)
 
 Vue.config.productionTip = false;
 

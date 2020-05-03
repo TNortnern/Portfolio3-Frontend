@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import constants from './constants';
+import projects from './projects'
 
 Vue.use(Vuex)
 
@@ -28,5 +29,6 @@ export default new Vuex.Store({
   actions: {},
   modules: {
     constants,
+    projects
   },
 });

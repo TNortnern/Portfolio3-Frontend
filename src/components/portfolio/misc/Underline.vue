@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="d-flex justify-center position--relative">
+    <div class="d-flex justify-center position--relative mt-5">
       <div
         :style="`background-color: ${color}; width: ${width}`"
         class="title-underline"
@@ -19,7 +19,7 @@ export default {
 
     width: {
       type: String,
-      default: '80px'
+      default: '70px'
     },
 
   }
