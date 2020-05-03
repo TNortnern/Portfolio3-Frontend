@@ -13,6 +13,8 @@
         dark
         :color="$store.state.constants.colors.darkerBlue"
         class="d-flex justify-center"
+        :fixed="fixedNav"
+        :class="fixedNav ? 'nav-slide-in' : ''"
       >
         <a
           v-for="item in $store.state.navItems"
@@ -30,9 +32,33 @@
 
 <script>
 export default {
-  data () {
+   data () {
     return {
-      cols: 2
+      scrollPosition: 0
+    }
+  },
+  mounted () {
+    window.addEventListener('scroll', this.updateScroll)
+    this.scrollPosition = window.scrollY
+  },
+  computed: {
+    scrolledEnough () {
+      if (this.scrollPosition > 910) {
+        return true
+      }
+      return false
+    },
+    fixedNav () {
+      if (!this.scrolledEnough) {
+        return false
+      }
+      return true
+    },
+  },
+  methods: {
+    updateScroll () {
+      this.scrollPosition = window.scrollY
+      console.log(window.scrollY)
     }
   }
 }
@@ -65,5 +91,16 @@ export default {
 .is-active {
   background-color: white;
   color: $aqua;
+}
+.nav-slide-in {
+  animation: slide-in .6s;
+}
+@keyframes slide-in {
+  0% {
+    transform: translateY(-400px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
 </style>
