@@ -79,18 +79,21 @@ export default {
   animation-duration: 0.5s;
   animation-fill-mode: both;
   animation-name: zoom;
-  transition: all 0.4s;
+}
+.zoom-enter-active {
+  transition: all 1.5s ease;
+
 }
 
 .zoom-leave-active {
   animation-direction: reverse;
-  transition: all 0.4s ease;
+  transition: all 0.9s ease;
   // opacity: 0;
   position: absolute;
 }
 
 .zoom-move {
-  transition: all 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+  transition: all 0.65s cubic-bezier(0.77, 0, 0.175, 1);
   //   @for $i from 1 through 15 {
   //     &:nth-child(#{$i}) {
   //        transition: transform .3s #{$i * 0.1}s cubic-bezier(0.77, 0, 0.175, 1);
