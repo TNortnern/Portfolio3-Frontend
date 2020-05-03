@@ -7,7 +7,11 @@
         gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
         height="280px"
       >
-    <div class="mask">
+    <div class="mask text-center pt-12">
+      <h2>{{ name }}</h2>
+      <b v-for="(tech, i) in technologies" :key="tech">
+        {{ tech }} <template v-if="i !== technologies.length-1">/</template>
+      </b>
     </div>
         <v-card-title v-text="projectType"></v-card-title>
       </v-img>
@@ -61,6 +65,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/styles';
 .v-card {
   z-index: 1;
   cursor: pointer;
@@ -80,5 +85,9 @@ export default {
   top: 0;
   left: 0;
   width: 100%;
+  color: $darkerBlue;
+  b {
+    color: $aqua;
+  }
 }
 </style>
