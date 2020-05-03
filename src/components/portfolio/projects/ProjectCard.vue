@@ -1,5 +1,5 @@
 <template>
-  <v-col cols="4">
+  <v-col cols="12" lg="4" xl="3" sm="6">
     <v-card>
       <v-img
         :src="images[0]"
