@@ -53,6 +53,5 @@ export default {
   background-color: $gray;
   padding-top: 70px;
   min-height: 900px;
-  max-height: 1400px;
 }
 </style>
