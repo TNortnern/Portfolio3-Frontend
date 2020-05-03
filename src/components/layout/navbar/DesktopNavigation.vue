@@ -32,18 +32,22 @@
 
 <script>
 export default {
-   data () {
+  data () {
     return {
       scrollPosition: 0
     }
   },
   mounted () {
     window.addEventListener('scroll', this.updateScroll)
-    this.scrollPosition = window.scrollY
+    var h = document.documentElement,
+      b = document.body,
+      st = 'scrollTop',
+      sh = 'scrollHeight';
+    this.scrollPosition = (h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight) * 100;
   },
   computed: {
     scrolledEnough () {
-      if (this.scrollPosition > 910) {
+      if (this.scrollPosition > 35) {
         return true
       }
       return false
@@ -57,9 +61,13 @@ export default {
   },
   methods: {
     updateScroll () {
-      this.scrollPosition = window.scrollY
-      console.log(window.scrollY)
-    }
+      var h = document.documentElement,
+        b = document.body,
+        st = 'scrollTop',
+        sh = 'scrollHeight';
+      this.scrollPosition = (h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight) * 100;
+    },
+
   }
 }
 </script>
@@ -71,6 +79,7 @@ export default {
 }
 .desktop-navigation {
   width: 100%;
+  min-height: 56px;
   @include mobile() {
     display: none;
   }
@@ -93,7 +102,7 @@ export default {
   color: $aqua;
 }
 .nav-slide-in {
-  animation: slide-in .6s;
+  animation: slide-in 0.6s;
 }
 @keyframes slide-in {
   0% {
