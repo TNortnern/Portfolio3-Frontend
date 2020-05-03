@@ -1,11 +1,13 @@
 <template>
   <v-col
     class="text-center"
-    cols="2"
+    lg="2"
+    sm="4"
+    cols="4"
   >
     <div class="about__language">
       <img
-        :src="'https://upload.wikimedia.org/wikipedia/commons/3/3c/Nuxt-js.png'"
+        :src="image ? require(`@/assets/skills/${image}`) : 'https://upload.wikimedia.org/wikipedia/commons/3/3c/Nuxt-js.png'"
         alt="img"
       >
       <span>{{ name }}</span>
@@ -32,6 +34,7 @@ export default {
 span {
   opacity: 0;
   transition: .26s ease;
+  font-size: 15px;
 }
 img {
   width: 100%;

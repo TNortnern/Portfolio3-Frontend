@@ -2,7 +2,9 @@
   <v-container class="mt-8">
     <v-row justify="space-between">
       <v-col
-        cols="6"
+      lg="6"
+      sm="6"
+        cols="12"
         class="text-center"
       >
         <img
@@ -11,11 +13,11 @@
           class="about__description-image"
         >
         <h3 class="display-1">Who am I?</h3>
-        <p>I'm a recent CS Grad that is passionate about Web Development. I enjoy frontend development and stride to get better everyday.</p>
+        <p>I'm a recent CS Grad that is passionate about Web Development. I enjoy frontend development and stride to get better and learn everyday.</p>
       </v-col>
-      <v-col cols="6">
+      <v-col sm="5" lg="6" cols="12">
         <h3 class="display-1 text-center text-uppercase">Technologies</h3>
-        <Underline styles="margin-bottom: 0;" />
+        <Underline styles="margin-bottom: 15px;" />
         <v-row justify="center">
           <AboutTechnologies v-for="tech in techs" :key="tech.name" :name="tech.name" :image="tech.image" />
         </v-row>
@@ -33,23 +35,23 @@ export default {
   data () {
     return {
       techs: [
-        { name: "HTML/CSS", image: '@/assets/skills/htmlcss.png' },
-        { name: "JavaScript", image: '@/assets/skills/htmlcss.png' },
-        { name: "Vue", image: '@/assets/skills/htmlcss.png' },
-        { name: "Nuxt", image: '@/assets/skills/htmlcss.png'},
-        { name: "React", image: '@/assets/skills/htmlcss.png' },
-        { name: "ReactNative", image: '@/assets/skills/htmlcss.png' },
-        { name: "Redux", image: '@/assets/skills/htmlcss.png' },
-        { name: "Express", image: '@/assets/skills/htmlcss.png' },
-        { name: "PHP", image: '@/assets/skills/htmlcss.png' },
-        { name: "Laravel",image: '@/assets/skills/htmlcss.png'},
-        { name: "MySQL", image: '@/assets/skills/htmlcss.png' },
-        { name: "SQL", image: '@/assets/skills/htmlcss.png' },
-        { name: "MVC", image: '@/assets/skills/htmlcss.png' },
-        { name: "Java", image: '@/assets/skills/htmlcss.png' },
-        { name: "GraphQL/Apollo", image: '@/assets/skills/htmlcss.png' },
-        { name: "SCSS", image: '@/assets/skills/htmlcss.png' },
-        { name: "MJML", image: '@/assets/skills/htmlcss.png' },
+        { name: "HTML/CSS", image: 'htmlcss.png' },
+        { name: "JavaScript", image: 'javascript.png' },
+        { name: "Vue", image: 'vue.png' },
+        { name: "Nuxt", image: 'nuxt.png'},
+        { name: "React", image: 'react.png' },
+        { name: "ReactNative", image: 'reactnative.png' },
+        { name: "Redux", image: 'redux.png' },
+        { name: "Node/Express", image: 'express.png' },
+        { name: "PHP", image: 'php.png' },
+        { name: "Laravel",image: 'laravel.png'},
+        { name: "MySQL", image: 'mysql.png' },
+        { name: "MVC", image: 'mvc.png' },
+        { name: "Java", image: 'java.png' },
+        { name: "GraphQL", image: 'graphql.png' },
+        { name: "MJML", image: 'mjml.png' },
+        { name: "SCSS", image: 'sass.png' },
+        { name: "BEM", image: 'bem.png' },
       ]
     }
   }
