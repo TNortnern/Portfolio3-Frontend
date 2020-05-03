@@ -18,9 +18,11 @@
       <v-col sm="5" lg="6" cols="12">
         <h3 class="display-1 text-center text-uppercase">Technologies</h3>
         <Underline styles="margin-bottom: 15px;" />
+        <v-container>
         <v-row justify="center">
           <AboutTechnologies v-for="tech in techs" :key="tech.name" :name="tech.name" :image="tech.image" />
         </v-row>
+        </v-container>
       </v-col>
     </v-row>
   </v-container>
@@ -69,6 +71,10 @@ h3 {
   border-radius: 50%;
   height: $width;
   border: 2px solid $darkerBlue;
+  @include mobile () {
+    max-width: 300px;
+    height: 300px;
+  }
 }
 p {
   font-size: 20px;
