@@ -64,7 +64,7 @@ export default {
   background-color: $blackish;
   color: white;
   padding-top: 75px;
-  padding-bottom: 15px;
+  padding-bottom: 55px;
 }
 .contact__input {
   @include mobile() {
@@ -73,16 +73,19 @@ export default {
   width: 400px;
   input,
   textarea {
-    background: #1e242c;
+    background: $darkerBlue;
     border: 0;
     box-sizing: border-box;
     color: #fff;
     display: block;
-    font-size: 12pt;
+    font-size: 19px;
     margin-bottom: 3px;
     outline: none;
     padding: 10px 15px;
     width: 100%;
+    &::placeholder {
+      color: #fff;
+    }
   }
   textarea {
     resize: none;

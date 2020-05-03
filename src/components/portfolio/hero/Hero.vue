@@ -1,5 +1,5 @@
 <template>
-  <div class="hero position--relative">
+  <div id="hero" class="hero position--relative">
     <HeroContent />
     <vue-particles
       color="#46a29f"
