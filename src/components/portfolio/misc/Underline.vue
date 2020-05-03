@@ -2,7 +2,7 @@
   <div>
     <div class="d-flex justify-center position--relative mt-5">
       <div
-        :style="`background-color: ${color}; width: ${width}`"
+        :style="`background-color: ${color}; width: ${width}; ${styles}`"
         class="title-underline"
       ></div>
     </div>
@@ -21,6 +21,10 @@ export default {
       type: String,
       default: '70px'
     },
+    styles: {
+      type: String,
+      default: ''
+    }
 
   }
 }
