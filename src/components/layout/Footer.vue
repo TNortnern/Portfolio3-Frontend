@@ -1,13 +1,15 @@
 <template>
   <div class="footer position--relative">
     <div class="d-flex justify-center footer__go-up">
-
-      <v-icon
-        class="position--absolute"
-        v-scroll-to="'#hero'"
-      >
-        fas fa-arrow-up
-      </v-icon>
+      <v-hover v-slot:default="{ hover }">
+        <v-icon
+          :elevation="hover ? 12 : 2"
+          class="position--absolute"
+          v-scroll-to="'#hero'"
+        >
+          fas fa-arrow-up
+        </v-icon>
+      </v-hover>
     </div>
     <p class="text-center">
       Trayvon Northern <span>{{ new Date().getFullYear() }}&copy;</span>
@@ -32,7 +34,7 @@ export default {
 .footer__go-up {
   &:hover {
     i {
-      opacity: 0.86;
+      // opacity: 0.86;
       animation: bounce 0.8s infinite;
     }
   }

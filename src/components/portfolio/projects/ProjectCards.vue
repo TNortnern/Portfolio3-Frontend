@@ -1,5 +1,5 @@
 <template>
-  <v-container style="position: relative;">
+  <v-container fluid style="position: relative;">
     <transition-group
       name="zoom"
       tag="div"
