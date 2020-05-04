@@ -38,7 +38,7 @@
         <p class="mt-6">{{ project.description }}</p>
       </v-card-text>
 
-      <v-card-actions class="d-none d-sm-block">
+      <v-card-actions class="d-none d-sm-flex">
         <v-btn
           color="primary"
           @click="modal = false"
