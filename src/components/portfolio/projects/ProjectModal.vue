@@ -1,9 +1,14 @@
 <template>
   <v-dialog
     v-model="modal"
-    width="700"
+    width="900"
   >
     <v-card>
+    <v-btn class="modal__close--mobile" icon>
+      <v-icon>
+        fas fa-times
+      </v-icon>
+    </v-btn>
       <v-carousel
         cycle
         class="project__modal-image"
@@ -18,42 +23,63 @@
           <v-img
             :src="image"
             aspect-ratio="1.77"
+            style="border-bottom: 4px solid rgba(0, 0, 0, 0.6)"
           ></v-img>
 
         </v-carousel-item>
       </v-carousel>
-      <v-card-text>
+      <v-card-text class="mt-3">
         <h1 class="mb-3">
           {{ project.name }}
         </h1>
         <span style="margin-left: 2px">{{ project.type }}</span>
-            <v-divider class="mt-2"></v-divider>
+        <v-divider class="mt-2"></v-divider>
 
         <p class="mt-6">{{ project.description }}</p>
       </v-card-text>
 
-
-      <v-card-actions class="d-flex justify-center">
+      <v-card-actions class="d-none d-sm-block">
         <v-btn
           color="primary"
-          text
           @click="modal = false"
         >
-          View Project
+          View Live
         </v-btn>
         <v-btn
           color="primary"
-          text
           @click="modal = false"
         >
           View Code
         </v-btn>
+        <v-spacer></v-spacer>
         <v-btn
           color="primary"
-          text
           @click="modal = false"
         >
           Close
+        </v-btn>
+      </v-card-actions>
+      <v-card-actions class="d-flex justify-center d-sm-none">
+        <v-btn
+          color="primary"
+          @click="modal = false"
+        >
+          View Live
+        </v-btn>
+        <v-btn
+          color="primary"
+          @click="modal = false"
+        >
+          View Code
+        </v-btn>
+        <v-spacer></v-spacer>
+        <v-btn
+          icon
+          @click="modal = false"
+        >
+          <v-icon>
+             fas fa-times
+          </v-icon>
         </v-btn>
       </v-card-actions>
     </v-card>
@@ -94,18 +120,27 @@ export default {
 p,
 span {
   font-size: 1.3em;
+  @include mobile() {
+      font-size: 1.1em;
+  }
 }
 span {
   color: #c0c0c0;
   font-weight: bold;
 }
 h1 {
-    font-size: 28px;
-}
-.project__modal-image {
-  height: 500px !important;
+  font-size: 28px;
   @include mobile() {
-    height: 400px !important;
+      font-size: 22px;
   }
+
+}
+.v-card__actions {
+  @include mobile() {
+    justify-content: center;
+  }
+}
+.modal__close--mobile {
+    position: absolute;
 }
 </style>
