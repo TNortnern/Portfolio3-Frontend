@@ -44,7 +44,7 @@ export default {
       if (!this.scrolledEnough) {
         return 'transparent'
       }
-      return this.$store.state.constants.colors.blackish
+      return this.$store.state.constants.colors.darkerBlue
     },
   },
   methods: {

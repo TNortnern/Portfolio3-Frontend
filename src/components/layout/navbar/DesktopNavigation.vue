@@ -13,8 +13,10 @@
         dark
         :color="$store.state.constants.colors.darkerBlue"
         class="d-flex justify-center"
+        id="nav"
         :fixed="fixedNav"
         :class="fixedNav ? 'nav-slide-in' : ''"
+        ref="navbar"
       >
         <a
           v-for="item in $store.state.navItems"
@@ -39,15 +41,11 @@ export default {
   },
   mounted () {
     window.addEventListener('scroll', this.updateScroll)
-    var h = document.documentElement,
-      b = document.body,
-      st = 'scrollTop',
-      sh = 'scrollHeight';
-    this.scrollPosition = (h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight) * 100;
+    this.scrollPosition = window.scrollY;
   },
   computed: {
     scrolledEnough () {
-      if (this.scrollPosition > 35) {
+      if (this.scrollPosition > 1050) {
         return true
       }
       return false
@@ -61,11 +59,7 @@ export default {
   },
   methods: {
     updateScroll () {
-      var h = document.documentElement,
-        b = document.body,
-        st = 'scrollTop',
-        sh = 'scrollHeight';
-      this.scrollPosition = (h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight) * 100;
+      this.scrollPosition = window.scrollY;
     },
 
   }
