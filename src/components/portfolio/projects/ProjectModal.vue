@@ -44,7 +44,7 @@
       <v-card-actions class="d-none d-sm-flex">
         <v-btn
           dark
-          :color="$store.state.constants.colors.aqua"
+          :color="$store.state.constants.colors.darkerBlue"
           @click="modal = false"
           large
           style="min-width: 118px"
@@ -53,7 +53,7 @@
         </v-btn>
         <v-btn
           dark
-          :color="$store.state.constants.colors.aqua"
+          :color="buttonColor"
           @click="modal = false"
           large
           style="min-width: 118px"
@@ -63,7 +63,7 @@
         <v-spacer></v-spacer>
         <v-btn
           dark
-          :color="$store.state.constants.colors.aqua"
+          :color="buttonColor"
           @click="modal = false"
           large
           style="min-width: 118px"
@@ -74,14 +74,14 @@
       <v-card-actions class="d-flex justify-center d-sm-none">
         <v-btn
           dark
-          :color="$store.state.constants.colors.aqua"
+          :color="buttonColor"
           @click="modal = false"
         >
           View Live
         </v-btn>
         <v-btn
           dark
-          :color="$store.state.constants.colors.aqua"
+          :color="buttonColor"
           @click="modal = false"
         >
           View Code
@@ -124,6 +124,9 @@ export default {
       set (val) {
         this.toggleModal(val)
       }
+    },
+    buttonColor () {
+        return this.$store.state.constants.colors.darkerBlue
     }
   }
 }
