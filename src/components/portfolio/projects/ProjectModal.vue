@@ -4,11 +4,14 @@
     width="900"
   >
     <v-card>
-    <v-btn class="modal__close--mobile" icon>
-      <v-icon>
-        fas fa-times
-      </v-icon>
-    </v-btn>
+      <v-btn
+        class="modal__close--mobile"
+        icon
+      >
+        <v-icon>
+          fas fa-times
+        </v-icon>
+      </v-btn>
       <v-carousel
         cycle
         class="project__modal-image"
@@ -40,34 +43,45 @@
 
       <v-card-actions class="d-none d-sm-flex">
         <v-btn
-          color="primary"
+          dark
+          :color="$store.state.constants.colors.aqua"
           @click="modal = false"
+          large
+          style="min-width: 118px"
         >
           View Live
         </v-btn>
         <v-btn
-          color="primary"
+          dark
+          :color="$store.state.constants.colors.aqua"
           @click="modal = false"
+          large
+          style="min-width: 118px"
         >
           View Code
         </v-btn>
         <v-spacer></v-spacer>
         <v-btn
-          color="primary"
+          dark
+          :color="$store.state.constants.colors.aqua"
           @click="modal = false"
+          large
+          style="min-width: 118px"
         >
           Close
         </v-btn>
       </v-card-actions>
       <v-card-actions class="d-flex justify-center d-sm-none">
         <v-btn
-          color="primary"
+          dark
+          :color="$store.state.constants.colors.aqua"
           @click="modal = false"
         >
           View Live
         </v-btn>
         <v-btn
-          color="primary"
+          dark
+          :color="$store.state.constants.colors.aqua"
           @click="modal = false"
         >
           View Code
@@ -78,7 +92,7 @@
           @click="modal = false"
         >
           <v-icon>
-             fas fa-times
+            fas fa-times
           </v-icon>
         </v-btn>
       </v-card-actions>
@@ -121,7 +135,7 @@ p,
 span {
   font-size: 1.3em;
   @include mobile() {
-      font-size: 1.1em;
+    font-size: 1.1em;
   }
 }
 span {
@@ -131,9 +145,8 @@ span {
 h1 {
   font-size: 28px;
   @include mobile() {
-      font-size: 22px;
+    font-size: 22px;
   }
-
 }
 .v-card__actions {
   @include mobile() {
@@ -141,6 +154,6 @@ h1 {
   }
 }
 .modal__close--mobile {
-    position: absolute;
+  position: absolute;
 }
 </style>
