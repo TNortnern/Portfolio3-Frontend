@@ -1,9 +1,16 @@
 <template>
+  <scrollactive
+      active-class="v-list-item--active"
+      :offset="120"
+      :duration="800"
+      bezier-easing-value=".5,0,.35,1"
+    >
   <v-navigation-drawer
     v-model="drawerOpen"
     app
     temporary
     dark
+    :color="$store.state.constants.colors.darkerBlue"
   >
     <v-list-item>
       <v-list-item-avatar>
@@ -24,6 +31,7 @@
         link
         :to="item.to"
         v-scroll-to="item.to"
+        class="scrollactive-item"
       >
         <v-list-item-icon>
           <v-icon>{{ item.icon }}</v-icon>
@@ -35,6 +43,7 @@
       </v-list-item>
     </v-list>
   </v-navigation-drawer>
+  </scrollactive>
 </template>
 
 <script>
