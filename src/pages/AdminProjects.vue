@@ -5,21 +5,25 @@
       <v-btn
         color="success"
         large
+        @click="toggleAdding()"
       >
         Add Project
       </v-btn>
     </div>
+    <ProjectForm :adding="adding" @toggle="toggleAdding" />
     <ProjectCards />
   </AdminLayout>
 </template>
 
 <script>
 import AdminLayout from '@/components/admin/AdminLayout'
+import ProjectForm from '@/components/admin/ProjectForm'
 import ProjectCards from '@/components/portfolio/projects/ProjectCards'
 export default {
   components: {
     ProjectCards,
-    AdminLayout
+    AdminLayout,
+    ProjectForm
   },
   data () {
     return {
@@ -39,7 +43,13 @@ export default {
           route: '/',
           icon: 'fas fa-arrow-left'
         },
-      ]
+      ],
+      adding: false
+    }
+  },
+  methods: {
+    toggleAdding () {
+      this.adding = !this.adding
     }
   }
 }

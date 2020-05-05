@@ -4,6 +4,7 @@
       :routes="routes"
       :drawerOpen="drawerOpen"
       :toggleDrawer="toggleDrawer"
+      class="d-block d-lg-none"
     />
     <v-row justify="center">
       <v-col
@@ -17,7 +18,7 @@
         lg="9"
         cols="12"
       >
-        <div style="position: absolute;">
+        <div class="d-block d-lg-none position--absolute">
           <v-btn
             @click="toggleDrawer()"
             icon

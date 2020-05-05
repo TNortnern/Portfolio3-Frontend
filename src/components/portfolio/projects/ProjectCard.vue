@@ -34,6 +34,15 @@
             >
               View Project
             </v-btn>
+            <v-btn
+              v-if="$store.state.auth.user"
+              @click="editModalOpen = !editModalOpen"
+              class="project__button mt-3 d-block mx-auto"
+              outlined
+              x-large
+            >
+              Edit Project
+            </v-btn>
           </div>
         </div>
         <v-card-title v-text="projectType"></v-card-title>
@@ -75,12 +84,13 @@ export default {
     },
     project: {
       type: Object,
-      default: () => {  }
+      default: () => { }
     }
   },
   data () {
     return {
-      modalOpen: false
+      modalOpen: false,
+      editModalOpen: false
     }
   },
   methods: {
