@@ -1,65 +1,62 @@
 <template>
-  <v-row>
-    <v-col cols="2">
-      <v-navigation-drawer
-        dark
-        permanent
-        style="height: 98.5vh"
+  <v-container fluid>
+    <v-row justify="center">
+      <v-col
+        class="d-none d-lg-block"
+        cols="2"
       >
-        <v-list-item>
-          <v-list-item-content>
-            <v-list-item-title class="title">
-              Dashboard
-            </v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-
-        <v-divider></v-divider>
-
-        <v-list
-          dense
-          nav
-        >
-          <v-list-item
-            v-for="item in routes"
-            :key="item.name"
-            link
-            :to="item.route"
-          >
-            <v-list-item-icon>
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-item-icon>
-
-            <v-list-item-content>
-              <v-list-item-title>{{ item.name }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
-        <template v-slot:append>
-          <div class="pa-2">
-            <v-btn
-              light
-              block
-            >Logout</v-btn>
+        <DesktopDrawer :routes="routes" />
+      </v-col>
+      <TabletDrawer
+        :routes="routes"
+        :drawerOpen="drawerOpen"
+        :toggleDrawer="toggleDrawer"
+      />
+      <v-col
+        lg="9"
+        cols="12"
+      >
+        <div @click="toggleDrawer()" style="position: absolute;">
+          <v-btn icon>
+            <v-icon>
+              fas fa-arrow-right
+            </v-icon>
+          </v-btn>
+          <div>
+            Menu {{drawerOpen}}
           </div>
-        </template>
-      </v-navigation-drawer>
-    </v-col>
-    <v-col cols="10">
-      <h1 class="text-center">{{ title }}</h1>
-      <Underline styles="margin-bottom: 20px" />
-      <slot />
-    </v-col>
-  </v-row>
+        </div>
+        <h1 class="text-center">{{ title }}</h1>
+        <Underline styles="margin-bottom: 20px" />
+        <slot />
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
+import DesktopDrawer from './DesktopDrawer'
+import TabletDrawer from './TabletDrawer'
 export default {
+  components: {
+    DesktopDrawer,
+    TabletDrawer
+  },
   props: {
     title: {
       type: String,
       default: ''
     }
+  },
+  methods: {
+    toggleDrawer (val) {
+      console.log('caelld')
+      if (val === false) {
+        this.drawerOpen = val
+        return
+      }
+      else this.drawerOpen = !this.drawerOpen
+    },
   },
   data () {
     return {
@@ -79,7 +76,8 @@ export default {
           route: '/',
           icon: 'fas fa-arrow-left'
         },
-      ]
+      ],
+      drawerOpen: false
     }
   }
 }
