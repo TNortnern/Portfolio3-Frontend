@@ -28,12 +28,11 @@
             </v-col>
             <v-col cols="12">
               <v-autocomplete
-                :items="['Skiing', 'Ice hockey', 'Soccer', 'Basketball', 'Hockey', 'Reading', 'Writing', 'Coding', 'Basejump']"
+                :items="techs"
                 label="Technologies*"
                 multiple
                 chips
                 deletable-chips
-                
                 no-data-text="Couldn't find technology"
               ></v-autocomplete>
             </v-col>
@@ -78,12 +77,11 @@
                 multiple
                 label="Choose Project Images*"
               ></v-file-input>
-
             </v-col>
           </v-row>
         </v-container>
       </v-card-text>
-     <v-card-actions>
+      <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn
           :color="$store.state.constants.colors.darkerBlue"
@@ -101,7 +99,12 @@
 </template>
 
 <script>
+import TechnologiesQuery from '@/graphql/TechnologiesQuery'
+
 export default {
+  apollo: {
+    technologies: TechnologiesQuery
+  },
   props: {
     adding: {
       type: Boolean,
@@ -109,6 +112,9 @@ export default {
     }
   },
   computed: {
+    techs () {
+      return this.technologies.map(tech => tech.name)
+    },
     modal: {
       get () {
         return this.adding

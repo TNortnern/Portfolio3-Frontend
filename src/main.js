@@ -4,6 +4,7 @@ import App from "./App.vue";
 import store from "./store";
 import "./registerServiceWorker";
 import vuetify from "./plugins/vuetify";
+import apolloProvider from './plugins/apolloProvider'
 import VueParticles from "vue-particles";
 import VueScrollTo from "vue-scrollto";
 import VueScrollactive from "vue-scrollactive";
@@ -18,6 +19,7 @@ Vue.config.productionTip = false;
 new Vue({
   router,
   store,
+  apolloProvider,
   vuetify,
   render: (h) => h(App),
 }).$mount("#app");

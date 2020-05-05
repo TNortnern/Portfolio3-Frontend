@@ -51,7 +51,7 @@ export default {
     toggleAdding () {
       this.adding = !this.adding
     }
-  }
+  },
 }
 </script>
 
