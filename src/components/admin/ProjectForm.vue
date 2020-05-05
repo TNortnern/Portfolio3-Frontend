@@ -17,6 +17,7 @@
               <v-text-field
                 label="Name of Project*"
                 required
+                v-model="name"
               ></v-text-field>
             </v-col>
             <v-col cols="12">
@@ -24,16 +25,20 @@
                 outlined
                 name="description"
                 label="Description"
+                v-model="description"
               ></v-textarea>
             </v-col>
             <v-col cols="12">
               <v-autocomplete
                 :items="techs"
+                :item-text="techs.name"
+                :item-value="techs.id"
                 label="Technologies*"
                 multiple
                 chips
                 deletable-chips
                 no-data-text="Couldn't find technology"
+                v-model="technologyItems"
               ></v-autocomplete>
             </v-col>
             <v-col
@@ -43,7 +48,7 @@
               <v-autocomplete
                 :items="['Website', 'Mobile Application']"
                 label="Project Type*"
-                multiple
+                v-model="projectType"
               ></v-autocomplete>
             </v-col>
             <v-col
@@ -54,6 +59,7 @@
                 :items="importanceNumbers"
                 label="Importance"
                 required
+                v-model="importance"
               ></v-select>
             </v-col>
             <v-col
@@ -63,19 +69,24 @@
               <v-text-field
                 label="Code Link*"
                 required
+                v-model="codeLink"
               ></v-text-field>
             </v-col>
             <v-col
               sm="6"
               cols="12"
             >
-              <v-text-field label="Hosted Link"></v-text-field>
+              <v-text-field
+                v-model="hostedLink"
+                label="Hosted Link"
+              ></v-text-field>
             </v-col>
             <v-col cols="12">
               <v-file-input
                 chips
                 multiple
-                label="Choose Project Images*"
+                label="Choose Images*"
+                v-model="images"
               ></v-file-input>
             </v-col>
           </v-row>
@@ -86,7 +97,7 @@
         <v-btn
           :color="$store.state.constants.colors.darkerBlue"
           dark
-          @click="modal = false"
+          @click="submit"
         >Add</v-btn>
         <v-btn
           :color="$store.state.constants.colors.darkerBlue"
@@ -100,8 +111,21 @@
 
 <script>
 import TechnologiesQuery from '@/graphql/TechnologiesQuery'
+import { addProject } from '@/graphql/Mutations'
 
 export default {
+  data () {
+    return {
+      name: 'test',
+      description: 'test',
+      technologyItems: ['5eb09b3d086d554700881356'],
+      codeLink: 'test.com',
+      hostedLink: 'testhost.com',
+      images: [],
+      projectType: 'Website',
+      importance: 20
+    }
+  },
   apollo: {
     technologies: TechnologiesQuery
   },
@@ -112,8 +136,20 @@ export default {
     }
   },
   computed: {
+    links () {
+      return [this.codeLink, this.hostedLink]
+    },
     techs () {
-      return this.technologies.map(tech => tech.name)
+      return this.technologies.map(tech => {
+          return { text: tech.name, value: tech.id }
+      })
+    },
+    techIds () {
+      let ids = []
+      this.technologyItems.forEach(tech => {
+        ids = [...ids, this.technologies.indexOf(tech)]
+      })
+      return ids
     },
     modal: {
       get () {
@@ -129,6 +165,32 @@ export default {
         numbers = [...numbers, i]
       }
       return numbers
+    }
+  },
+  methods: {
+    async submit () {
+      await this.$apollo.mutate({
+        mutation: addProject,
+        variables: {
+          name: this.name,
+          description: this.description,
+          projectType: this.projectType,
+          technologies: this.technologyItems,
+          links: this.links,
+          importance: this.importance,
+          images: this.images
+        },
+        update: (store, { data: { submit } }) => {
+          const data = store.readQuery({ query: TechnologiesQuery })
+          console.log(data, submit)
+        }
+      })
+        .then((res) => {
+          console.log(res)
+        })
+        .catch((err) => {
+          console.error(err)
+        })
     }
   }
 }
