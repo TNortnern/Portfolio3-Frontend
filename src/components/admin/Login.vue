@@ -89,6 +89,7 @@ export default {
     login () {
       this.$refs.observer.validate()
       this.$store.dispatch('login', { email: this.email, password: this.password })
+      this.$router.push('/projects')
     }
   },
 }

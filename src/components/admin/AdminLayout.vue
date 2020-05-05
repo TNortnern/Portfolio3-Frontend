@@ -36,20 +36,31 @@
           </v-list-item>
         </v-list>
         <template v-slot:append>
-        <div class="pa-2">
-          <v-btn light block>Logout</v-btn>
-        </div>
-      </template>
+          <div class="pa-2">
+            <v-btn
+              light
+              block
+            >Logout</v-btn>
+          </div>
+        </template>
       </v-navigation-drawer>
     </v-col>
-    <v-col>
-      test
+    <v-col cols="10">
+      <h1 class="text-center">{{ title }}</h1>
+      <Underline styles="margin-bottom: 20px" />
+      <slot />
     </v-col>
   </v-row>
 </template>
 
 <script>
 export default {
+  props: {
+    title: {
+      type: String,
+      default: ''
+    }
+  },
   data () {
     return {
       routes: [

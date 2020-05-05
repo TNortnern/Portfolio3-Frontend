@@ -1,21 +1,25 @@
 <template>
   <div class="admin">
-    <Login v-if="!$store.state.auth.user" />
-    <Dashboard v-else />
+    <Login v-if="!user" />
   </div>
 </template>
 
 <script>
 import Login from '@/components/admin/Login'
-import Dashboard from '@/components/admin/Dashboard'
 export default {
   components: {
     Login,
-    Dashboard
+  },
+  computed: {
+    user () {
+      return this.$store.state.auth.user
+    }
+  },
+  mounted () {
+    if (this.user) this.$router.push('/projects')
   }
 }
 </script>
 
 <style>
-
 </style>

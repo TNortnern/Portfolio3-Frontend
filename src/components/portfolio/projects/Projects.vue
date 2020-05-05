@@ -23,14 +23,11 @@
 
 <script>
 import ProjectCards from './ProjectCards'
-import projects from '@/dummy/projects'
 export default {
   components: {
     ProjectCards
   },
-  mounted () {
-    this.$store.dispatch('getAllProjects', projects)
-  },
+
   computed: {
     tab: {
       get () {

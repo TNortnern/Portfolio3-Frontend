@@ -3,10 +3,12 @@ import VueRouter from "vue-router";
 import Portfolio from "../pages/Portfolio.vue";
 import NotFound from '../pages/NotFound.vue'
 import Admin from "../pages/Admin.vue";
+import AdminProjects from '../pages/AdminProjects.vue'
 Vue.use(VueRouter);
 const routes = [
   { path: "/", component: Portfolio, meta: { title: 'Portfolio'} },
   { path: "/admin", component: Admin, meta: { title: 'Admin'} },
+  { path: "/projects", component: AdminProjects, meta: { title: 'Dashboard - Projects'} },
   { path: "*", component: NotFound, meta: { title: 'Page Not Found' } },
 ];
 
