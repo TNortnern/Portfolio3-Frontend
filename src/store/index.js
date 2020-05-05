@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import constants from './constants';
 import projects from './projects'
+import auth from './auth'
 
 Vue.use(Vuex)
 
@@ -29,6 +30,7 @@ export default new Vuex.Store({
   actions: {},
   modules: {
     constants,
-    projects
+    projects,
+    auth
   },
 });
