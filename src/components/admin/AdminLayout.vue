@@ -1,5 +1,10 @@
 <template>
   <v-container fluid>
+    <TabletDrawer
+      :routes="routes"
+      :drawerOpen="drawerOpen"
+      :toggleDrawer="toggleDrawer"
+    />
     <v-row justify="center">
       <v-col
         class="d-none d-lg-block"
@@ -7,23 +12,22 @@
       >
         <DesktopDrawer :routes="routes" />
       </v-col>
-      <TabletDrawer
-        :routes="routes"
-        :drawerOpen="drawerOpen"
-        :toggleDrawer="toggleDrawer"
-      />
+
       <v-col
         lg="9"
         cols="12"
       >
-        <div @click="toggleDrawer()" style="position: absolute;">
-          <v-btn icon>
+        <div style="position: absolute;">
+          <v-btn
+            @click="toggleDrawer()"
+            icon
+          >
             <v-icon>
               fas fa-arrow-right
             </v-icon>
           </v-btn>
           <div>
-            Menu {{drawerOpen}}
+            Menu
           </div>
         </div>
         <h1 class="text-center">{{ title }}</h1>
@@ -50,12 +54,11 @@ export default {
   },
   methods: {
     toggleDrawer (val) {
-      console.log('caelld')
-      if (val === false) {
+      if (val) {
         this.drawerOpen = val
         return
       }
-      else this.drawerOpen = !this.drawerOpen
+      this.drawerOpen = !this.drawerOpen
     },
   },
   data () {

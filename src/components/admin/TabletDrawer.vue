@@ -1,9 +1,9 @@
 <template>
   <v-navigation-drawer
+    v-model="drawer"
     dark
     app
     temporary
-    v-model="drawer"
   >
     <v-list-item>
       <v-list-item-content>
@@ -66,8 +66,8 @@ export default {
       get () {
         return this.drawerOpen
       },
-      set () {
-        this.toggleDrawer(false)
+      set (val) {
+        this.toggleDrawer(val)
       }
     }
   }
