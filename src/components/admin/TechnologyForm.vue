@@ -1,6 +1,6 @@
 <template>
   <v-dialog
-    v-model="modal"
+    v-model="modalOpen"
     max-width="600px"
   >
     <v-card class="position--relative">
@@ -35,6 +35,18 @@
                 v-model="image"
               ></v-file-input>
             </v-col>
+            <v-col
+              cols="12"
+              class="text-center"
+            >
+
+              <img
+                width="175px"
+                v-if="src"
+                :src="src"
+                alt="preview image"
+              >
+            </v-col>
           </v-row>
         </v-container>
       </v-card-text>
@@ -48,7 +60,7 @@
         <v-btn
           :color="$store.state.constants.colors.darkerBlue"
           dark
-          @click="modal = false"
+          @click="modalOpen = false"
         >Close</v-btn>
       </v-card-actions>
     </v-card>
@@ -62,24 +74,36 @@ import TechnologiesQuery from '@/graphql/TechnologiesQuery'
 export default {
   data () {
     return {
-      name: 'test',
-      description: 'test',
+      name: '',
+      description: '',
       image: null,
+      src: ''
+    }
+  },
+  mounted () {
+    if (this.technology) {
+      this.name = this.technology.name
+      this.description = this.technology.description ? this.technology.description : ''
+      this.src = this.technology.image
     }
   },
   apollo: {
     technologies: TechnologiesQuery
   },
   props: {
-    adding: {
+    modal: {
       type: Boolean,
       default: false
+    },
+    technology: {
+      type: Object,
+      default: () => { }
     }
   },
   computed: {
-    modal: {
+    modalOpen: {
       get () {
-        return this.adding
+        return this.modal
       },
       set (val) {
         this.$emit('toggle', val)
@@ -87,9 +111,12 @@ export default {
     },
   },
   methods: {
-     submit () {
-      console.log(this.image)
-       this.$apollo.mutate({
+    submit () {
+      if (this.technology) this.edit()
+      else this.addNew()
+    },
+    addNew () {
+      this.$apollo.mutate({
         mutation: addTechnology,
         variables: {
           name: this.name,
@@ -104,7 +131,7 @@ export default {
         optimisticResponse: {
           __typename: 'Mutation',
           addTag: {
-            __typename: 'Tag',
+            __typename: 'Technology',
             id: -1,
             name: this.name,
             description: this.description,
@@ -120,10 +147,10 @@ export default {
     }
   },
   watch: {
-    technologies (newval, oldval) {
+    image (newval, oldval) {
       console.log(oldval, newval)
       if (newval) {
-        this.techs = newval
+        this.src = URL.createObjectURL(newval)
       }
     }
   }

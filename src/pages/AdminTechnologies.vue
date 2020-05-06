@@ -1,15 +1,16 @@
 <template>
   <AdminLayout title="Technologies">
     <TechnologyForm
-      :adding="adding"
-      @toggle="toggleAdding"
+      :modal="modal"
+      @toggle="toggleModal"
+      :technology="technology"
     />
     <div class="text-center">
 
       <v-btn
         color="success"
         large
-        @click="toggleAdding()"
+        @click="toggleModal()"
       >
         Add Technology
       </v-btn>
@@ -31,13 +32,20 @@
               fas fa-times
             </v-icon>
           </v-btn>
-          <span>
-            {{ tech.name }}
-          </span>
-          <img
-            :src="tech.image"
-            alt=""
-          >
+          <div class="text-center tech-item">
+            <span>
+              {{ tech.name }}
+            </span>
+            <img
+              :src="tech.image"
+              alt=""
+              class="d-block"
+            >
+          </div>
+          <p>test</p>
+          <v-btn @click="modal = true, technology = tech" :color="$store.state.constants.colors.blackish" dark class="tech-edit">
+            Edit
+          </v-btn>
         </div>
       </v-col>
     </v-row>
@@ -57,15 +65,16 @@ export default {
   },
   data () {
     return {
-      adding: false,
+      modal: false,
+      technology: null
     }
   },
   apollo: {
     technologies: TechnologiesQuery
   },
   methods: {
-    toggleAdding () {
-      this.adding = !this.adding
+    toggleModal () {
+      this.modal = !this.modal
     },
     deleteItem (id) {
       this.$apollo.mutate({
@@ -93,5 +102,7 @@ export default {
 img {
   width: 60px;
   height: 60px;
+}
+.tech-item {
 }
 </style>
