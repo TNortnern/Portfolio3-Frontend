@@ -1,5 +1,8 @@
 <template>
-  <v-container fluid style="position: relative;">
+  <v-container
+    fluid
+    style="position: relative;"
+  >
     <transition-group
       name="zoom"
       tag="div"
@@ -15,6 +18,7 @@
         :description="project.description"
         :project-type="project.type"
         :links="project.links"
+        :admin="admin"
         :project="project"
       />
     </transition-group>
@@ -26,6 +30,12 @@ import ProjectCard from './ProjectCard'
 export default {
   components: {
     ProjectCard
+  },
+  props: {
+    admin: {
+      type: Boolean,
+      default: false
+    }
   },
   computed: {
     projects () {
@@ -83,7 +93,6 @@ export default {
 }
 .zoom-enter-active {
   transition: all 1.5s ease;
-
 }
 
 .zoom-leave-active {

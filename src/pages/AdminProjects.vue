@@ -11,7 +11,7 @@
       </v-btn>
     </div>
     <ProjectForm :adding="adding" @toggle="toggleAdding" />
-    <ProjectCards />
+    <ProjectCards :admin="true" />
   </AdminLayout>
 </template>
 

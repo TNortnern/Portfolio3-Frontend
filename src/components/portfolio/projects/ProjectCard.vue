@@ -10,6 +10,17 @@
       :toggleModal="toggleModal"
       :project="project"
     />
+    <div v-if="admin" class="text-center">
+      <v-btn
+        icon
+        color="red"
+        @click="deleteItem(project.id)"
+      >
+        <v-icon>
+          fas fa-times
+        </v-icon>
+      </v-btn>
+    </div>
     <v-card class="position--relative">
       <v-img
         :src="images[0]"
@@ -35,7 +46,7 @@
               View Project
             </v-btn>
             <v-btn
-              v-if="$store.state.auth.user"
+              v-if="admin"
               @click="editModalOpen = !editModalOpen"
               class="project__button mt-3 d-block mx-auto"
               outlined
@@ -53,6 +64,8 @@
 
 <script>
 import ProjectModal from './ProjectModal'
+import { deleteProject } from '@/graphql/Mutations'
+import ProjectsQuery from '@/graphql/ProjectsQuery'
 export default {
   components: {
     ProjectModal
@@ -85,6 +98,10 @@ export default {
     project: {
       type: Object,
       default: () => { }
+    },
+    admin: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
@@ -97,6 +114,24 @@ export default {
     toggleModal (val) {
       if (val || val === false) this.modalOpen = val
       else this.modal = !this.modal
+    },
+       deleteItem (id) {
+      this.$apollo.mutate({
+        mutation: deleteProject,
+        variables: {
+          id
+        },
+        update: (store) => {
+          const data = store.readQuery({ query: ProjectsQuery })
+          const index = data.projects.findIndex(t => t.id === id)
+          if (index !== -1) {
+            data.technologies.splice(index, 1)
+            store.writeQuery({ query: ProjectsQuery, data })
+          } else {
+            alert('could not find index!')
+          }
+        },
+      })
     }
   }
 }

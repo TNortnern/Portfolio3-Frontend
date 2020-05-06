@@ -8,7 +8,7 @@
         <span
           class="headline"
           :style="`color: ${$store.state.constants.colors.darkerBlue}`"
-        >Project Form</span>
+        >Technology Form</span>
       </v-card-title>
       <v-card-text>
         <v-container>
@@ -68,6 +68,7 @@ export default {
     }
   },
   apollo: {
+    technologies: TechnologiesQuery
   },
   props: {
     adding: {
@@ -86,26 +87,44 @@ export default {
     },
   },
   methods: {
-    async submit () {
-        console.log(this.image)
-      await this.$apollo.mutate({
+     submit () {
+      console.log(this.image)
+       this.$apollo.mutate({
         mutation: addTechnology,
         variables: {
           name: this.name,
           description: this.description,
           image: this.image
         },
-        update: (store, { data: { submit } }) => {
+        update: (store, { data: { addTechnology } }) => {
           const data = store.readQuery({ query: TechnologiesQuery })
-          console.log(data, submit)
-        }
+          data.technologies.push(addTechnology)
+          store.writeQuery({ query: TechnologiesQuery, data })
+        },
+        optimisticResponse: {
+          __typename: 'Mutation',
+          addTag: {
+            __typename: 'Tag',
+            id: -1,
+            name: this.name,
+            description: this.description,
+            image: this.image
+          },
+        },
       })
-        .then((res) => {
-          console.log(res)
+        .then(() => {
         })
         .catch((err) => {
           console.error(err)
         })
+    }
+  },
+  watch: {
+    technologies (newval, oldval) {
+      console.log(oldval, newval)
+      if (newval) {
+        this.techs = newval
+      }
     }
   }
 }

@@ -42,7 +42,7 @@ export default {
 @import '@/assets/styles';
 .hero {
   background-color: $blackish;
-  height: 835px;
+  height: 750px;
   width: 100%;
 }
 

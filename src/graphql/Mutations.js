@@ -44,3 +44,21 @@ export const addTechnology = gql`
     }
   }
 `;
+
+export const deleteProject = gql`
+  mutation($id: ID!) {
+    deleteProject(id: $id) {
+      id
+      name
+    }
+  }
+`;
+
+export const deleteTechnology = gql`
+  mutation($id: ID!) {
+    deleteTechnology(id: $id) {
+      id
+      name
+    }
+  }
+`;

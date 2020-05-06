@@ -45,7 +45,9 @@
         <v-btn
           dark
           :color="$store.state.constants.colors.darkerBlue"
-          @click="modal = false"
+          :href="project.links.hosted"
+          target="__blank"
+          link
           large
           style="min-width: 118px"
         >
@@ -54,7 +56,9 @@
         <v-btn
           dark
           :color="buttonColor"
-          @click="modal = false"
+          :href="project.links.code"
+          target="__blank"
+          link
           large
           style="min-width: 118px"
         >
@@ -75,14 +79,18 @@
         <v-btn
           dark
           :color="buttonColor"
-          @click="modal = false"
+          :href="project.links.hosted"
+          target="__blank"
+          link
         >
           View Live
         </v-btn>
         <v-btn
           dark
           :color="buttonColor"
-          @click="modal = false"
+          :href="project.links.code"
+          target="__blank"
+          link
         >
           View Code
         </v-btn>
@@ -126,7 +134,7 @@ export default {
       }
     },
     buttonColor () {
-        return this.$store.state.constants.colors.darkerBlue
+      return this.$store.state.constants.colors.darkerBlue
     }
   }
 }

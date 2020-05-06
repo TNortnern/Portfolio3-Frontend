@@ -45,7 +45,7 @@ export default {
   },
   computed: {
     scrolledEnough () {
-      if (this.scrollPosition > 885) {
+      if (this.scrollPosition > 800) {
         return true
       }
       return false
