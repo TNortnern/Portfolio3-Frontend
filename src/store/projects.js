@@ -4,17 +4,7 @@ const state = () => ({
   modal: false,
   tab: { name: 0 },
   items: [
-    { tab: "All" },
-    { tab: "Vue" },
-    { tab: "React" },
-    { tab: "Express" },
-    { tab: "Laravel" },
-    { tab: "PHP" },
-    { tab: "Nuxt" },
-    { tab: "ReactNative" },
-    { tab: "GraphQL/Apollo" },
-    { tab: "SCSS" },
-    { tab: "Redux" },
+    { name: "All" },
   ],
 });
 
@@ -23,6 +13,10 @@ const actions = {
     // api call
     commit("setProjects", projects);
   },
+  addProject ({commit, state}, project) {
+    const temp = [...state.all, project]
+    commit("setProjects", temp)
+  }
 };
 
 const mutations = {
@@ -32,6 +26,10 @@ const mutations = {
   setTab(state, tab) {
     state.tab.name = tab;
   },
+  setItems(state, items) {
+   
+    state.items = [...state.items, ...items]
+  }
 };
 
 export default {

@@ -111,19 +111,20 @@
 
 <script>
 import TechnologiesQuery from '@/graphql/TechnologiesQuery'
+import ProjectsQuery from '@/graphql/ProjectsQuery'
 import { addProject } from '@/graphql/Mutations'
 
 export default {
   data () {
     return {
-      name: 'test',
-      description: 'test',
-      technologyItems: ['5eb09b3d086d554700881356'],
-      codeLink: 'test.com',
-      hostedLink: 'testhost.com',
+      name: '',
+      description: '',
+      technologyItems: [],
+      codeLink: '',
+      hostedLink: '',
       images: [],
       projectType: 'Website',
-      importance: 20
+      importance: 0
     }
   },
   apollo: {
@@ -140,6 +141,7 @@ export default {
       return [this.codeLink, this.hostedLink]
     },
     techs () {
+      if (!this.technologies) return []
       return this.technologies.map(tech => {
           return { text: tech.name, value: tech.id }
       })
@@ -180,13 +182,15 @@ export default {
           importance: this.importance,
           images: this.images
         },
-        update: (store, { data: { submit } }) => {
-          const data = store.readQuery({ query: TechnologiesQuery })
-          console.log(data, submit)
+        update: (store, { data: { addProject } }) => {
+          const data = store.readQuery({ query: ProjectsQuery })
+          data.projects.push(addProject)
+          store.writeQuery({ query: ProjectsQuery, data })
         }
       })
-        .then((res) => {
-          console.log(res)
+        .then(() => {
+          // console.log(data.addProject)
+          //  this.$store.dispatch('addProject', data.addProject)
         })
         .catch((err) => {
           console.error(err)

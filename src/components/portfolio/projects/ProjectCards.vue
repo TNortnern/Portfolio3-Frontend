@@ -2,6 +2,7 @@
   <v-container
     fluid
     style="position: relative;"
+    v-if="projects && projects.length"
   >
     <transition-group
       name="zoom"
@@ -11,7 +12,7 @@
     >
       <ProjectCard
         v-for="project in projects"
-        :key="project.name"
+        :key="project.id"
         :name="project.name"
         :images="project.images"
         :technologies="project.technologies"
@@ -40,12 +41,14 @@ export default {
   computed: {
     projects () {
       if (this.currentFilter !== 'All') {
-        return this.$store.state.projects.all.filter(project => project.technologies.includes(this.currentFilter))
+        return this.$store.state.projects.all.filter(project => {
+          return project.technologies.some(tech => tech.name === this.currentFilter)
+        })
       }
       return this.$store.state.projects.all
     },
     currentFilter () {
-      return this.$store.state.projects.items[this.$store.state.projects.tab.name].tab
+      return this.$store.state.projects.items[this.$store.state.projects.tab.name].name
     }
   },
   methods: {

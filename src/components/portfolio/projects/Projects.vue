@@ -12,9 +12,9 @@
     >
       <v-tab
         v-for="item in items"
-        :key="item.tab"
+        :key="item.name"
       >
-        {{ item.tab }}
+        {{ item.name }}
       </v-tab>
     </v-tabs>
     <ProjectCards />

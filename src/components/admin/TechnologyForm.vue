@@ -15,7 +15,7 @@
           <v-row>
             <v-col cols="12">
               <v-text-field
-                label="Name of Project*"
+                label="Name of Technology*"
                 required
                 v-model="name"
               ></v-text-field>
@@ -140,6 +140,11 @@ export default {
         },
       })
         .then(() => {
+          this.modalOpen = false
+          this.name = ''
+          this.description = ''
+          this.image = null
+          this.src = ''
         })
         .catch((err) => {
           console.error(err)
