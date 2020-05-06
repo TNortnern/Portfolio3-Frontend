@@ -21,4 +21,5 @@ yarn-error.log*
 *.sw?
 
 .now
-./dummy/projects.js
+dummy/projects.js
+dummy/
