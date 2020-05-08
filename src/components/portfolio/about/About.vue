@@ -20,10 +20,10 @@
           title="Certificates"
           icon="fas fa-award"
         >
-          <ul class="text-center">
-            <li><span class="d-block"><span class="subtitle-2"> - </span> <b>MTA</b></span>HTML/CSS</li>
-            <li><span class="d-block"><span class="subtitle-2"> - </span> <b>MTA</b></span> JavaScript</li>
-            <li><span class="d-block"><span class="subtitle-2"> - </span> <b>MTA</b></span> MySQL</li>
+          <ul class="text-left">
+            <li><span class="d-bloc"><span class="subtitle-2"> - </span> <b>MTA - </b></span>HTML/CSS</li>
+            <li><span class="d-bloc"><span class="subtitle-2"> - </span> <b>MTA - </b></span> JavaScript</li>
+            <li><span class="d-bloc"><span class="subtitle-2"> - </span> <b>MTA - </b></span> MySQL</li>
           </ul>
         </AboutBrief>
         <AboutBrief

@@ -10,6 +10,12 @@
       :toggleModal="toggleModal"
       :id="project.id"
     />
+    <ProjectForm
+      @toggle="toggleEditModal"
+      :editing="project"
+      :open-modal="editModalOpen"
+    />
+
     <div
       v-if="admin"
       class="text-center"
@@ -69,9 +75,11 @@
 import ProjectModal from './ProjectModal'
 import { deleteProject } from '@/graphql/Mutations'
 import ProjectsQuery from '@/graphql/ProjectsQuery'
+import ProjectForm from '@/components/admin/ProjectForm'
 export default {
   components: {
-    ProjectModal
+    ProjectModal,
+    ProjectForm
   },
   props: {
     name: {
@@ -118,25 +126,29 @@ export default {
       if (val || val === false) this.modalOpen = val
       else this.modal = !this.modal
     },
-    deleteItem (id) {
-      this.$apollo.mutate({
-        mutation: deleteProject,
-        variables: {
-          id
-        },
-        update: (store) => {
-          const data = store.readQuery({ query: ProjectsQuery })
-          const index = data.projects.findIndex(t => t.id === id)
-          if (index !== -1) {
-            data.projects.splice(index, 1)
-            store.writeQuery({ query: ProjectsQuery, data })
-          } else {
-            alert('could not find index!')
-          }
-        },
-      })
-    }
+    toggleEditModal (val) {
+      if (val || val === false) this.editModalOpen = val
+      else this.editModalOpen = !this.editModalOpen
+  },
+  deleteItem (id) {
+    this.$apollo.mutate({
+      mutation: deleteProject,
+      variables: {
+        id
+      },
+      update: (store) => {
+        const data = store.readQuery({ query: ProjectsQuery })
+        const index = data.projects.findIndex(t => t.id === id)
+        if (index !== -1) {
+          data.projects.splice(index, 1)
+          store.writeQuery({ query: ProjectsQuery, data })
+        } else {
+          alert('could not find index!')
+        }
+      },
+    })
   }
+}
 }
 </script>
 

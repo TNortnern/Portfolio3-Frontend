@@ -10,7 +10,7 @@
         Add Project
       </v-btn>
     </div>
-    <ProjectForm :adding="adding" @toggle="toggleAdding" />
+    <ProjectForm :openModal="adding" @toggle="toggleAdding" />
     <ProjectCards :admin="true" />
   </AdminLayout>
 </template>

@@ -11,7 +11,10 @@ export default gql`
         codeLink
         hostedLink
       }
+      projectType
+      importance
       technologies {
+        id
         name
       }
     }

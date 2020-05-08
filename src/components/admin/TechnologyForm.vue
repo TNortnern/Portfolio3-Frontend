@@ -152,8 +152,7 @@ export default {
     }
   },
   watch: {
-    image (newval, oldval) {
-      console.log(oldval, newval)
+    image (newval) {
       if (newval) {
         this.src = URL.createObjectURL(newval)
       }
