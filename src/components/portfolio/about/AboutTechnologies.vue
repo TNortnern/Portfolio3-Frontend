@@ -39,7 +39,7 @@ span {
 }
 img {
   width: 100%;
-  max-height: 56px;
+  max-height: 96px;
   display: inline-flex;
   align-content: center;
   @include mobile () {

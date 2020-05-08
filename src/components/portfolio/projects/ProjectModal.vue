@@ -3,7 +3,7 @@
     v-model="modal"
     width="900"
   >
-    <v-card>
+    <v-card v-if="project">
       <v-btn
         class="modal__close--mobile"
         icon
@@ -40,88 +40,54 @@
 
         <p class="mt-6">{{ project.description }}</p>
       </v-card-text>
+      <DesktopActions
+        :code-link="code"
+        :hosted-link="hosted"
+        :button-color="buttonColor"
+        @close="close"
+      />
+      <MobileActions
+        :code-link="code"
+        :hosted-link="hosted"
+        :button-color="buttonColor"
+        @close="close"
+      />
 
-      <v-card-actions class="d-none d-sm-flex">
-        <v-btn
-          dark
-          :color="$store.state.constants.colors.darkerBlue"
-          :href="project.links.hosted"
-          target="__blank"
-          link
-          large
-          style="min-width: 118px"
-        >
-          View Live
-        </v-btn>
-        <v-btn
-          dark
-          :color="buttonColor"
-          :href="project.links.code"
-          target="__blank"
-          link
-          large
-          style="min-width: 118px"
-        >
-          View Code
-        </v-btn>
-        <v-spacer></v-spacer>
-        <v-btn
-          dark
-          :color="buttonColor"
-          @click="modal = false"
-          large
-          style="min-width: 118px"
-        >
-          Close
-        </v-btn>
-      </v-card-actions>
-      <v-card-actions class="d-flex justify-center d-sm-none">
-        <v-btn
-          dark
-          :color="buttonColor"
-          :href="project.links.hosted"
-          target="__blank"
-          link
-        >
-          View Live
-        </v-btn>
-        <v-btn
-          dark
-          :color="buttonColor"
-          :href="project.links.code"
-          target="__blank"
-          link
-        >
-          View Code
-        </v-btn>
-        <v-spacer></v-spacer>
-        <v-btn
-          icon
-          @click="modal = false"
-        >
-          <v-icon>
-            fas fa-times
-          </v-icon>
-        </v-btn>
-      </v-card-actions>
     </v-card>
   </v-dialog>
 </template>
 
 <script>
+import ProjectQuery from '@/graphql/ProjectQuery'
+import DesktopActions from './DesktopActions'
+import MobileActions from './MobileActions'
 export default {
+  components: {
+    DesktopActions,
+    MobileActions
+  },
   props: {
     modalOpen: {
       type: Boolean,
       default: false
     },
-    project: {
-      type: Object,
-      default: () => { }
+    id: {
+      type: String,
+      default: ''
     },
     toggleModal: {
       type: Function,
       default: () => { }
+    }
+  },
+  apollo: {
+    project: {
+      query: ProjectQuery,
+      variables () {
+        return {
+          id: this.id ? this.id : ''
+        }
+      },
     }
   },
   computed: {
@@ -135,6 +101,17 @@ export default {
     },
     buttonColor () {
       return this.$store.state.constants.colors.darkerBlue
+    },
+    hosted () {
+      return '//'+ this.project.links.hostedLink
+    },
+    code () {
+      return '//' + this.project.links.codeLink
+    }
+  },
+  methods: {
+    close () {
+      this.toggleModal(false)
     }
   }
 }

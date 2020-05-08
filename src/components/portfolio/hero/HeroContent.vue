@@ -10,13 +10,13 @@
         <v-col
           cols="7"
           lg="2"
+          xl="1"
         >
           <v-btn
             class="hero__button"
             color="white"
             outlined
             x-large
-            to="#about"
             v-scroll-to="'#about'"
             active-class="no-active-class"
           >

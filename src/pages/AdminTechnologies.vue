@@ -42,7 +42,6 @@
               class="d-block"
             >
           </div>
-          <p>test</p>
           <v-btn @click="modal = true, technology = tech" :color="$store.state.constants.colors.blackish" dark class="tech-edit">
             Edit
           </v-btn>
