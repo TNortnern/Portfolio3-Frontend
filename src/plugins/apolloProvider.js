@@ -7,7 +7,7 @@ Vue.use(VueApollo);
 
 const apolloClient = new ApolloClient({
   link: createUploadLink({
-    uri: "http://api-portfolio3.herokuapp.com/graphql",
+    uri: "https://api-portfolio3.herokuapp.com/graphql",
   }),
   cache: new InMemoryCache(),
 });
