@@ -3,16 +3,15 @@ import { ApolloClient } from "apollo-client";
 import { createUploadLink } from "apollo-upload-client";
 import Vue from "vue";
 import VueApollo from "vue-apollo";
+const token = localStorage.getItem('token')
 Vue.use(VueApollo);
 
-const token = localStorage.getItem('token')
 
 const apolloClient = new ApolloClient({
   link: createUploadLink({
-    uri: "http://localhost:5000/graphql",
+    uri: "https://api-portfolio3.herokuapp.com/graphql",
     headers: {
-      Authorization:
-        `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     },
   }),
   cache: new InMemoryCache(),

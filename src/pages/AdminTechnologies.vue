@@ -42,7 +42,12 @@
               class="d-block"
             >
           </div>
-          <v-btn @click="modal = true, technology = tech" :color="$store.state.constants.colors.blackish" dark class="tech-edit">
+          <v-btn
+            @click="modal = true, technology = tech"
+            :color="$store.state.constants.colors.blackish"
+            dark
+            class="tech-edit"
+          >
             Edit
           </v-btn>
         </div>
@@ -65,11 +70,26 @@ export default {
   data () {
     return {
       modal: false,
-      technology: null
+      technology: null,
+      technologies: []
     }
   },
-  apollo: {
-    technologies: TechnologiesQuery
+  async mounted () {
+    if (this.$store.state.projects.items.length > 1) {
+      this.technologies = this.$store.state.projects.items.filter(tech => tech.name !== 'All')
+    }
+    else {
+      await this.$apollo.query({
+        query: TechnologiesQuery
+      })
+        .then(({ data }) => {
+          console.log(data)
+          this.technologies = data.technologies
+        })
+        .catch(err => {
+          console.log('something went wrong', err)
+        })
+    }
   },
   methods: {
     toggleModal () {

@@ -25,9 +25,19 @@ export default new Vuex.Store({
         icon: 'fas fa-id-card-alt'
       },
     ],
+    isAuthenticated: false
   },
-  mutations: {},
-  actions: {},
+  mutations: {
+    isAuthenticated (state, isAuthenticated) {
+      state.isAuthenticated = isAuthenticated
+    }
+  },
+  actions: {
+    async getUser (_, runner) {
+      const result = await runner()
+      console.log(result)
+    }
+  },
   modules: {
     constants,
     projects,

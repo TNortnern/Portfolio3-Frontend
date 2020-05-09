@@ -38,6 +38,7 @@
         <v-btn
           light
           block
+          @click="logout"
         >Logout</v-btn>
       </div>
     </template>
@@ -50,6 +51,13 @@ export default {
     routes: {
       type: Array,
       default: () => { }
+    }
+  },
+  methods: {
+    logout () {
+      this.$store.commit('isAuthenticated', false)
+      localStorage.removeItem('token')
+      this.$router.push('/admin')
     }
   }
 }

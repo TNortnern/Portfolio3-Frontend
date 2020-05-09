@@ -6,7 +6,11 @@
     >
       <ValidationObserver ref="observer">
         <h1 class="text-center">Admin Portal</h1>
-        <form>
+        <span
+          class="v-messages theme--light error--text"
+          v-if="error"
+        >{{ error }}</span>
+        <form @submit.prevent="login">
           <ValidationProvider
             v-slot="{ errors }"
             name="email"
@@ -37,8 +41,19 @@
           <v-btn
             :color="$store.state.constants.colors.darkerBlue"
             dark
-            @click="login"
-          >submit</v-btn>
+            type="submit"
+            min-width="92px"
+            :style="loading ? 'pointer-events: none; opacity: 0.2' : ''"
+          >
+            <template v-if="!loading">submit</template>
+            <template v-else>
+              <v-progress-circular
+                indeterminate
+                color="white"
+                :size="25"
+              ></v-progress-circular>
+            </template>
+          </v-btn>
         </form>
       </ValidationObserver>
     </v-container>
@@ -79,6 +94,8 @@ export default {
   data: () => ({
     email: '',
     password: '',
+    error: null,
+    loading: false
   }),
 
   methods: {
@@ -88,7 +105,10 @@ export default {
       this.$refs.observer.reset()
     },
     async login () {
-      this.$refs.observer.validate()
+      this.error = null
+      const isValid = await this.$refs.observer.validate()
+      if (!isValid) return
+      this.loading = true
       await this.$apollo.mutate({
         mutation: login,
         variables: {
@@ -97,16 +117,19 @@ export default {
         },
       })
         .then((res) => {
+          this.loading = false
+          this.$store.commit('isAuthenticated', true)
+          localStorage.setItem('token', res.data.login.token)
           const user = {
             user: res.data.login.user,
             token: res.data.login.token
           }
           this.$store.commit('setUser', user)
-          localStorage.setItem('token', res.data.login.token)
           this.$router.push('projects')
         })
         .catch((err) => {
-          console.error(err)
+          this.loading = false
+          this.error = err.message.split(':')[1]
         })
     }
   },

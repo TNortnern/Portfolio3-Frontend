@@ -5,6 +5,7 @@ import NotFound from "../pages/NotFound.vue";
 import Admin from "../pages/Admin.vue";
 import AdminProjects from "../pages/AdminProjects.vue";
 import AdminTechnologies from "../pages/AdminTechnologies.vue";
+// import store from '../store'
 Vue.use(VueRouter);
 const routes = [
   { path: "/", component: Portfolio, meta: { title: "Portfolio" } },
@@ -36,6 +37,7 @@ router.afterEach((to) => {
 });
 
 router.beforeEach((to, from, next) => {
+  // console.log(store.state.isAuthenticated)
   if (to.matched.some((record) => record.meta.requiresAuth)) {
     if (!localStorage.getItem("token")) {
       next({

@@ -1,7 +1,10 @@
 <template>
   <div>
     <v-overlay :value="loading">
-      <v-progress-circular indeterminate size="64"></v-progress-circular>
+      <v-progress-circular
+        indeterminate
+        size="64"
+      ></v-progress-circular>
     </v-overlay>
     <v-dialog
       v-model="modal"
@@ -126,7 +129,7 @@
           >Close</v-btn>
         </v-card-actions>
       </v-card>
-    </v-dialog>    
+    </v-dialog>
   </div>
 </template>
 
@@ -148,14 +151,26 @@ export default {
       projectType: 'Website',
       importance: 0,
       projectImages: [],
-      loading: false
+      loading: false,
+      technologies: []
     }
   },
-  mounted () {
+  async mounted () {
     if (this.editing) this.$apollo.queries.project.refresh()
+     if (this.$store.state.projects.items.length > 1) {
+      this.technologies = this.$store.state.projects.items.filter(tech => tech.name !== 'All')
+    }
+    else {
+      await this.$apollo.query({
+        query: TechnologiesQuery
+      })
+      .then(({data}) => {
+        // console.log(data)
+        this.technologies = data.technologies
+      })
+    }
   },
   apollo: {
-    technologies: TechnologiesQuery,
     project: {
       query: ProjectQuery,
       variables () {

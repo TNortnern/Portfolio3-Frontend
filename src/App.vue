@@ -14,21 +14,26 @@ export default {
       error: null
     }
   },
+  async created () {
+    await this.$apollo.query({
+      query: GetUserQuery,
+      variables: {
+        token: localStorage.getItem('token')
+      }
+    })
+      .then(({ data }) => {
+        // console.log(data)
+        this.$store.commit('isAuthenticated', true)
+        this.$store.commit('setUser', data.getUser)
+      })
+      .catch(err => {
+         localStorage.removeItem('token')
+        console.log(err)
+      })
+  },
   apollo: {
     projects: ProjectsQuery,
     technologies: TechnologiesQuery,
-    getUser: { 
-      query: GetUserQuery,
-      variables () {
-        return {
-          token: localStorage.getItem('token')
-        }
-      },
-      error (error) {
-         this.error = error.message
-         localStorage.removeItem('token')
-      }
-    }
   },
   name: 'App',
   watch: {
@@ -37,12 +42,13 @@ export default {
       if (newval) this.$store.dispatch('getAllProjects', newval)
     },
     technologies (newval) {
-      if (this.$store.state.projects.technologies && this.$store.state.technologies.all.length) return
+      if (this.$store.state.projects.items && this.$store.state.projects.items.length > 1) return
       if (newval) this.$store.commit('setItems', newval)
-    },
-    getUser (newval) {
-      if (this.$store.state.auth.user) return
-      if (newval) this.$store.commit('setUser', newval)
+    }
+  },
+  computed: {
+    user () {
+      return this.$store.state.auth.user
     }
   }
 };
