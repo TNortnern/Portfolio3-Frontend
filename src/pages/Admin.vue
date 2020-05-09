@@ -1,6 +1,6 @@
 <template>
   <div class="admin">
-    <Login v-if="!user" />
+    <Login  />
   </div>
 </template>
 
@@ -15,9 +15,6 @@ export default {
       return this.$store.state.auth.user
     }
   },
-  mounted () {
-    if (this.user) this.$router.push('/projects')
-  }
 }
 </script>
 

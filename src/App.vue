@@ -5,13 +5,30 @@
 </template>
 
 <script>
-// import projects from '@/dummy/projects'
 import ProjectsQuery from '@/graphql/ProjectsQuery'
 import TechnologiesQuery from '@/graphql/TechnologiesQuery'
+import GetUserQuery from '@/graphql/GetUserQuery'
 export default {
+  data () {
+    return {
+      error: null
+    }
+  },
   apollo: {
     projects: ProjectsQuery,
-    technologies: TechnologiesQuery
+    technologies: TechnologiesQuery,
+    getUser: { 
+      query: GetUserQuery,
+      variables () {
+        return {
+          token: localStorage.getItem('token')
+        }
+      },
+      error (error) {
+         this.error = error.message
+         localStorage.removeItem('token')
+      }
+    }
   },
   name: 'App',
   watch: {
@@ -20,8 +37,12 @@ export default {
       if (newval) this.$store.dispatch('getAllProjects', newval)
     },
     technologies (newval) {
-      if (this.$store.state.projects.technologies && this.$store.state.technologies.all.legnth) return
+      if (this.$store.state.projects.technologies && this.$store.state.technologies.all.length) return
       if (newval) this.$store.commit('setItems', newval)
+    },
+    getUser (newval) {
+      if (this.$store.state.auth.user) return
+      if (newval) this.$store.commit('setUser', newval)
     }
   }
 };

@@ -31,6 +31,7 @@
               label="Password"
               required
               class="login__input"
+              type="password"
             ></v-text-field>
           </ValidationProvider>
           <v-btn
@@ -47,6 +48,7 @@
 <script>
 import { required, email, max, min } from 'vee-validate/dist/rules'
 import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
+import { login } from '@/graphql/Mutations'
 
 setInteractionMode('eager')
 
@@ -80,16 +82,32 @@ export default {
   }),
 
   methods: {
-
     clear () {
       this.email = ''
       this.password = ''
       this.$refs.observer.reset()
     },
-    login () {
+    async login () {
       this.$refs.observer.validate()
-      this.$store.dispatch('login', { email: this.email, password: this.password })
-      this.$router.push('/projects')
+      await this.$apollo.mutate({
+        mutation: login,
+        variables: {
+          email: this.email,
+          password: this.password,
+        },
+      })
+        .then((res) => {
+          const user = {
+            user: res.data.login.user,
+            token: res.data.login.token
+          }
+          this.$store.commit('setUser', user)
+          localStorage.setItem('token', res.data.login.token)
+          this.$router.push('projects')
+        })
+        .catch((err) => {
+          console.error(err)
+        })
     }
   },
 }

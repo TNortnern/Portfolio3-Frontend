@@ -13,7 +13,7 @@
           class="about__description-image"
         >
         <h3 class="display-1">Who am I?</h3>
-        <p>I'm a recent CS Grad that is passionate about Web Development. I enjoy frontend development and stride to get better and learn everyday.</p>
+        <p>I'm a recent CS Grad that is passionate about Web Development. I enjoy frontend development most and stride to get better and learn more everyday.</p>
       </v-col>
       <v-col sm="5" lg="6" cols="12">
         <h3 class="display-1 text-center text-uppercase">Technologies</h3>
