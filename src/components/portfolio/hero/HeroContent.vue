@@ -3,10 +3,13 @@
     <h2
       data-aos="zoom-out"
       :data-aos-duration="duration"
+          data-aos-offset="0"
       class="white--text"
     >Hello, I'm <span class="aqua--text">Trayvon Northern</span></h2>
     <h2
       data-aos="zoom-out"
+                data-aos-offset="0"
+
       :data-aos-duration="duration"
       class="white--text mt-3"
     >The<span class="aqua--text"> Full Stack</span> <span>Web Developer</span></h2>
@@ -20,6 +23,8 @@
           lg="2"
           xl="1"
           data-aos="fade-up"
+                    data-aos-offset="0"
+
           :data-aos-duration="duration"
         >
           <v-btn
@@ -43,6 +48,8 @@
           lg="2"
           data-aos="fade-up"
           :data-aos-duration="duration"
+                    data-aos-offset="0"
+
         >
           <v-btn
             class="hero__button"
