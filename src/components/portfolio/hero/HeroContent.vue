@@ -1,18 +1,7 @@
 <template>
   <div class="text-center hero__content position--absolute d-flex flex-column justify-center">
-    <h2
-      data-aos="zoom-out"
-      :data-aos-duration="duration"
-          data-aos-offset="-300"
-      class="white--text"
-    >Hello, I'm <span class="aqua--text">Trayvon Northern</span></h2>
-    <h2
-      data-aos="zoom-out"
-          data-aos-offset="-300"
-
-      :data-aos-duration="duration"
-      class="white--text mt-3"
-    >The<span class="aqua--text"> Full Stack</span> <span>Web Developer</span></h2>
+    <h2 class="white--text">Hello, I'm <span class="aqua--text">Trayvon Northern</span></h2>
+    <h2 class="white--text mt-3">The<span class="aqua--text"> Full Stack</span> <span>Web Developer</span></h2>
     <v-container>
       <v-row
         class="mr-lg-5"
@@ -22,10 +11,6 @@
           cols="7"
           lg="2"
           xl="1"
-          data-aos="fade-up"
-          data-aos-offset="-300"
-
-          :data-aos-duration="duration"
         >
           <v-btn
             class="hero__button"
@@ -46,10 +31,6 @@
         <v-col
           cols="7"
           lg="2"
-          data-aos="fade-up"
-          :data-aos-duration="duration"
-          data-aos-offset="-300"
-
         >
           <v-btn
             class="hero__button"
