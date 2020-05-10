@@ -1,7 +1,15 @@
 <template>
   <div class="text-center hero__content position--absolute d-flex flex-column justify-center">
-    <h2 class="white--text">Hello, I'm <span class="aqua--text">Trayvon Northern</span></h2>
-    <h2 class="white--text mt-3">The<span class="aqua--text"> Full Stack</span> <span>Web Developer</span></h2>
+    <h2
+      data-aos="zoom-out"
+      :data-aos-duration="duration"
+      class="white--text"
+    >Hello, I'm <span class="aqua--text">Trayvon Northern</span></h2>
+    <h2
+      data-aos="zoom-out"
+      :data-aos-duration="duration"
+      class="white--text mt-3"
+    >The<span class="aqua--text"> Full Stack</span> <span>Web Developer</span></h2>
     <v-container>
       <v-row
         class="mr-lg-5"
@@ -11,6 +19,8 @@
           cols="7"
           lg="2"
           xl="1"
+          data-aos="fade-up"
+          :data-aos-duration="duration"
         >
           <v-btn
             class="hero__button"
@@ -31,6 +41,8 @@
         <v-col
           cols="7"
           lg="2"
+          data-aos="fade-up"
+          :data-aos-duration="duration"
         >
           <v-btn
             class="hero__button"
@@ -55,21 +67,23 @@
 
 <script>
 export default {
-
+  data: () => ({
+    duration: 380
+  })
 }
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/styles';
+@import "@/assets/styles";
 
 .hero__content {
   width: 100%;
-   top: 50%;
+  top: 50%;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
 }
 .hero__button {
-  transition: ease .32s;
+  transition: ease 0.32s;
   &:hover {
     background-color: darken($aqua, 12%) !important;
     border: 1px solid darken($aqua, 12%);
@@ -82,21 +96,21 @@ export default {
   }
 }
 @keyframes pulse {
-	0% {
-		transform: scale(1);
-	}
+  0% {
+    transform: scale(1);
+  }
 
-	100% {
-		transform: scale(1.3);
-	}
+  100% {
+    transform: scale(1.3);
+  }
 }
 h2 {
   font-size: 3rem;
-    font-weight: 400;
-    line-height: 3.125rem;
-    letter-spacing: normal !important;
+  font-weight: 400;
+  line-height: 3.125rem;
+  letter-spacing: normal !important;
 }
-@include mobile () {
+@include mobile() {
   h2 {
     font-size: 27px !important;
   }

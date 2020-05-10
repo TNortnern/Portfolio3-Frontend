@@ -1,7 +1,7 @@
 <template>
   <div id="projects">
-    <h1 class="display-1 text-uppercase text-center mb-0">Projects</h1>
-    <Underline />
+    <h1 data-aos="fade-in" class="display-1 text-uppercase text-center mb-0">Projects</h1>
+    <Underline data-aos="fade-in" />
     <v-tabs
       v-model="tab"
       :background-color="$store.state.constants.colors.gray"
@@ -9,6 +9,7 @@
       centered
       :slider-color="$store.state.constants.colors.blackish"
       :color="$store.state.constants.colors.blackish"
+      data-aos="fade-in"
     >
       <v-tab
         v-for="item in items"

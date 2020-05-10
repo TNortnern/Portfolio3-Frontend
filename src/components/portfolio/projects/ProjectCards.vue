@@ -11,7 +11,7 @@
       @before-leave="beforeLeave"
     >
       <ProjectCard
-        v-for="project in projects"
+        v-for="(project, i) in projects"
         :key="project.id"
         :name="project.name"
         :images="project.images"
@@ -21,6 +21,8 @@
         :links="project.links"
         :admin="admin"
         :project="project"
+        :index="i+4"
+        :filtered="filtered"
       />
     </transition-group>
   </v-container>
@@ -36,6 +38,11 @@ export default {
     admin: {
       type: Boolean,
       default: false
+    }
+  },
+  data () {
+    return {
+      filtered: false
     }
   },
   computed: {
@@ -58,6 +65,13 @@ export default {
       const left = $el.offsetLeft + 'px'
       Object.assign($el.style, { left, top })
     },
+  },
+  watch: {
+    currentFilter (newval) {
+      if (newval) {
+        this.filtered = true
+      }
+    }
   }
 }
 </script>

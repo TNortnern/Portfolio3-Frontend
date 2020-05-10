@@ -1,8 +1,9 @@
 <template>
   <div id="contact">
-    <h1 class="display-1 text-uppercase text-center mb-0">Contact</h1>
-    <Underline color="white" />
+    <h1 data-aos="fade-in" class="display-1 text-uppercase text-center mb-0">Contact</h1>
+    <Underline data-aos="fade-in" color="white" />
     <form
+    data-aos="zoom-in"
       @submit.prevent="sendMessage"
       class="d-flex flex-column align-center"
     >
@@ -53,6 +54,8 @@ export default {
   methods: {
     sendMessage () {
       console.log(this.message)
+      window.location.href = "mailto:address@dmail.com";
+
     }
   }
 }

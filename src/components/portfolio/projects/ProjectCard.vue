@@ -30,7 +30,12 @@
         </v-icon>
       </v-btn>
     </div>
-    <v-card class="position--relative">
+    <v-card
+      :data-aos="!filtered ? 'zoom-in' : ''"
+      :data-aos-duration="duration"
+      data-aos-easing="ease-in-sine"
+      class="position--relative"
+    >
       <v-img
         :src="images[0]"
         class="white--text align-end"
@@ -113,12 +118,21 @@ export default {
     admin: {
       type: Boolean,
       default: false
+    },
+    index: {
+      type: Number,
+      default: 0
+    },
+    filtered: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
     return {
       modalOpen: false,
-      editModalOpen: false
+      editModalOpen: false,
+      duration: 385
     }
   },
   methods: {
@@ -129,26 +143,26 @@ export default {
     toggleEditModal (val) {
       if (val || val === false) this.editModalOpen = val
       else this.editModalOpen = !this.editModalOpen
-  },
-  deleteItem (id) {
-    this.$apollo.mutate({
-      mutation: deleteProject,
-      variables: {
-        id
-      },
-      update: (store) => {
-        const data = store.readQuery({ query: ProjectsQuery })
-        const index = data.projects.findIndex(t => t.id === id)
-        if (index !== -1) {
-          data.projects.splice(index, 1)
-          store.writeQuery({ query: ProjectsQuery, data })
-        } else {
-          alert('could not find index!')
-        }
-      },
-    })
+    },
+    deleteItem (id) {
+      this.$apollo.mutate({
+        mutation: deleteProject,
+        variables: {
+          id
+        },
+        update: (store) => {
+          const data = store.readQuery({ query: ProjectsQuery })
+          const index = data.projects.findIndex(t => t.id === id)
+          if (index !== -1) {
+            data.projects.splice(index, 1)
+            store.writeQuery({ query: ProjectsQuery, data })
+          } else {
+            alert('could not find index!')
+          }
+        },
+      })
+    }
   }
-}
 }
 </script>
 
