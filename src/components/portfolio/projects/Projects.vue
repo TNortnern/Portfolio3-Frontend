@@ -18,7 +18,7 @@
         {{ item.name }}
       </v-tab>
     </v-tabs>
-    <ProjectCards />
+    <ProjectCards  />
   </div>
 </template>
 

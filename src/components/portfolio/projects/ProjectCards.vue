@@ -3,6 +3,9 @@
     fluid
     style="position: relative;"
     v-if="projects && projects.length"
+    data-aos="zoom-in"
+    :data-aos-duration="500"
+    data-aos-easing="ease-in-sine"
   >
     <transition-group
       name="zoom"

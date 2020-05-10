@@ -31,9 +31,6 @@
       </v-btn>
     </div>
     <v-card
-      :data-aos="!filtered ? 'zoom-in' : ''"
-      :data-aos-duration="duration"
-      data-aos-easing="ease-in-sine"
       class="position--relative"
     >
       <v-img
