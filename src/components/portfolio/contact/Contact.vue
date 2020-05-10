@@ -11,7 +11,7 @@
     <ValidationObserver ref="observer">
 
       <form
-        data-aos="zoom-in"
+        data-aos="flip-left"
         @submit.prevent="sendMessage()"
         class="d-flex flex-column align-center"
       >
