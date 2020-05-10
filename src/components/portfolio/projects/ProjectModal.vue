@@ -1,7 +1,7 @@
 <template>
   <v-dialog
     v-model="modal"
-    width="900"
+    width="730"
   >
     <v-card v-if="project">
       <v-btn
