@@ -3,12 +3,12 @@
     <h2
       data-aos="zoom-out"
       :data-aos-duration="duration"
-          data-aos-offset="0"
+          data-aos-offset="-300"
       class="white--text"
     >Hello, I'm <span class="aqua--text">Trayvon Northern</span></h2>
     <h2
       data-aos="zoom-out"
-                data-aos-offset="0"
+          data-aos-offset="-300"
 
       :data-aos-duration="duration"
       class="white--text mt-3"
@@ -23,7 +23,7 @@
           lg="2"
           xl="1"
           data-aos="fade-up"
-                    data-aos-offset="0"
+          data-aos-offset="-300"
 
           :data-aos-duration="duration"
         >
@@ -48,7 +48,7 @@
           lg="2"
           data-aos="fade-up"
           :data-aos-duration="duration"
-                    data-aos-offset="0"
+          data-aos-offset="-300"
 
         >
           <v-btn
