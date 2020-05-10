@@ -1,49 +1,112 @@
 <template>
   <div id="contact">
-    <h1 data-aos="fade-in" class="display-1 text-uppercase text-center mb-0">Contact</h1>
-    <Underline data-aos="fade-in" color="white" />
-    <form
-    data-aos="zoom-in"
-      @submit.prevent="sendMessage"
-      class="d-flex flex-column align-center"
-    >
-      <div class="contact__input">
-        <input
-          type="text"
-          name="name"
-          id="name"
-          placeholder="Name"
-          v-model="name"
+    <h1
+      data-aos="fade-in"
+      class="display-1 text-uppercase text-center mb-0"
+    >Contact</h1>
+    <Underline
+      data-aos="fade-in"
+      color="white"
+    />
+    <ValidationObserver ref="observer">
+
+      <form
+        data-aos="zoom-in"
+        @submit.prevent="sendMessage()"
+        class="d-flex flex-column align-center"
+      >
+        <div class="contact__input">
+          <ValidationProvider
+            v-slot="{ errors }"
+            name="Name"
+            rules="required"
+          >
+            <input
+              type="text"
+              name="Name"
+              id="name"
+              placeholder="Name"
+              v-model="name"
+            >
+            <span
+              class="v-messages theme--light error--text"
+              v-if="errors"
+            >{{ errors[0] }}</span>
+          </ValidationProvider>
+        </div>
+        <div class="contact__input">
+          <ValidationProvider
+            v-slot="{ errors }"
+            name="Email"
+            rules="required|email"
+          >
+            <input
+              type="text"
+              name="email"
+              id="email"
+              placeholder="Email"
+              v-model="email"
+            >
+            <span
+              class="v-messages theme--light error--text"
+              v-if="errors"
+            >{{ errors[0] }}</span>
+
+          </ValidationProvider>
+        </div>
+        <div class="contact__input">
+          <ValidationProvider
+            v-slot="{ errors }"
+            name="Message"
+            rules="required"
+          >
+            <textarea
+              name="message"
+              id="message"
+              cols="30"
+              rows="7"
+              placeholder="Message"
+              v-model="message"
+            ></textarea>
+            <span
+              class="v-messages theme--light error--text"
+              v-if="errors"
+            >{{ errors[0] }}</span>
+
+          </ValidationProvider>
+        </div>
+        <v-btn
+          @click="sendMessage()"
+          type="submit"
+          class="mt-3"
+          dark
+          outlined
         >
-      </div>
-      <div class="contact__input">
-        <input
-          type="text"
-          name="email"
-          id="email"
-          placeholder="Email"
-          v-model="email"
-        >
-      </div>
-      <div class="contact__input">
-        <textarea
-          name="message"
-          id="message"
-          cols="30"
-          rows="7"
-          placeholder="Message"
-          v-model="message"
-        ></textarea>
-      </div>
-      <v-btn class="mt-3" dark outlined>
           Submit
-      </v-btn>
-    </form>
+        </v-btn>
+      </form>
+    </ValidationObserver>
   </div>
 </template>
 
 <script>
+import { required, email } from 'vee-validate/dist/rules'
+import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
+setInteractionMode('eager')
+
+extend('email', {
+  ...email,
+  message: 'Invalid email address',
+})
+extend('required', {
+  ...required,
+  message: '{_field_} can not be empty',
+})
 export default {
+  components: {
+    ValidationProvider,
+    ValidationObserver,
+  },
   data () {
     return {
       name: '',
@@ -52,9 +115,10 @@ export default {
     }
   },
   methods: {
-    sendMessage () {
-      console.log(this.message)
-      window.location.href = "mailto:address@dmail.com";
+    async sendMessage () {
+      const isValid = await this.$refs.observer.validate()
+      if (!isValid) return
+      window.location.href = `mailto:traynorthern@yahoo.com?subject=Let's talk&body=${this.message}`;
 
     }
   }
