@@ -15,7 +15,7 @@
           class="about__description-image"
         >
         <h3 class="display-1">Who am I?</h3>
-        <p>I'm a recent CS Grad that is passionate about Web Development. I enjoy frontend development most from building UI's to email development. I always stride to get better and learn more everyday.</p>
+        <p>I'm a recent CS Grad that is passionate about Web Development. I enjoy frontend development most, from building UI's to email development. I always stride to get better and learn more everyday.</p>
       </v-col>
       <v-col
         data-aos="fade-left"

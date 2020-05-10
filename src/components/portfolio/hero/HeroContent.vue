@@ -75,7 +75,7 @@
 <script>
 export default {
   data: () => ({
-    duration: 380
+    duration: 480
   })
 }
 </script>
