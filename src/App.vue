@@ -14,15 +14,14 @@ export default {
       error: null
     }
   },
-  async created () {
-    await this.$apollo.query({
+   created () {
+    this.$apollo.query({
       query: GetUserQuery,
       variables: {
         token: localStorage.getItem('token')
       }
     })
       .then(({ data }) => {
-        // console.log(data)
         this.$store.commit('isAuthenticated', true)
         this.$store.commit('setUser', data.getUser)
       })

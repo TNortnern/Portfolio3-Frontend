@@ -83,7 +83,6 @@ export default {
         query: TechnologiesQuery
       })
         .then(({ data }) => {
-          console.log(data)
           this.technologies = data.technologies
         })
         .catch(err => {

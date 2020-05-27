@@ -1,6 +1,9 @@
 <template>
   <div id="projects">
-    <h1 data-aos="fade-in" class="display-1 text-uppercase text-center mb-0">Projects</h1>
+    <h1
+      data-aos="fade-in"
+      class="display-1 text-uppercase text-center mb-0"
+    >Projects</h1>
     <Underline data-aos="fade-in" />
     <v-tabs
       v-model="tab"
@@ -18,7 +21,18 @@
         {{ item.name }}
       </v-tab>
     </v-tabs>
-    <ProjectCards  />
+    <ProjectCards v-if="items.length" />
+    <div
+      v-else
+      class="text-center"
+    >
+      <v-progress-circular
+        class="mt-8"
+        indeterminate
+        color="primary"
+      >
+      </v-progress-circular>
+    </div>
   </div>
 </template>
 
