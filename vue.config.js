@@ -4,6 +4,9 @@ module.exports = {
   ],
      pwa: {
         name: 'Portfolio',
+        workboxOptions: {
+          skipWaiting: true
+        },
         iconPaths: {
           favicon32: 'favicon.ico',
           favicon16: 'favicon.ico',
