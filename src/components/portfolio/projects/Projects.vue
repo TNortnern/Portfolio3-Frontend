@@ -21,7 +21,7 @@
         {{ item.name }}
       </v-tab>
     </v-tabs>
-    <ProjectCards v-if="items.length" />
+    <ProjectCards v-if="items.length > 1" />
     <div
       v-else
       class="text-center"
