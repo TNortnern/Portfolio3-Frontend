@@ -1,5 +1,5 @@
 ## Previews
-Frontend: [https://trayvonnorthern.org](https://trayvonnorthern.org)
+Frontend: [https://trayvonnorthern.tech](https://trayvonnorthern.org)
 
 Backend: [http://api-portfolio3.herokuapp.com/graphql](http://api-portfolio3.herokuapp.com/graphql)
 
